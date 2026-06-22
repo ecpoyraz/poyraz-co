@@ -1,14 +1,30 @@
-import { Sidebar } from "@/components/sidebar";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div>
-      <Sidebar />
-      <h1>Hi, This is Eyüp Poyraz.</h1>
-      <p>
-        Explore my work as a marketer with a track record of scaling tech
-        products to maximize user value.
-      </p>
+    <div className="flex flex-col gap-16">
+      <section>
+        <h1 className="font-display text-4xl font-semibold tracking-tight">
+          Hi, This is Eyüp Poyraz.
+        </h1>
+        <p className="mt-4 max-w-xl text-muted">
+          Explore my work as a marketer with a track record of scaling tech
+          products to maximize user value.
+        </p>
+      </section>
+      <section>
+        <h2 className="font-display text-2xl font-semibold">Projects</h2>
+      </section>
+      <section>
+        <h2 className="font-display text-2xl font-semibold">Notebook</h2>
+      </section>
+      <section>
+        <h2 className="font-display text-2xl font-semibold">Bookmarks</h2>
+      </section>
+      <section>
+        <h2 className="font-display text-2xl font-semibold">Tech Stack</h2>
+      </section>
+      <Footer />
     </div>
   );
 }

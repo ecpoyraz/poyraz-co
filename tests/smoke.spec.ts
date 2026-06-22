@@ -33,13 +33,14 @@ test("theme toggle switches html to dark", async ({ page }) => {
 
 test("sidebar shows grouped nav links", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "Projects" })).toHaveAttribute(
+  const sidebar = page.locator("aside");
+  await expect(sidebar.getByRole("link", { name: "Projects" })).toHaveAttribute(
     "href",
     "/projects",
   );
-  await expect(page.getByRole("link", { name: "Notebook" })).toHaveAttribute(
+  await expect(sidebar.getByRole("link", { name: "Notebook" })).toHaveAttribute(
     "href",
     "/notebook",
   );
-  await expect(page.getByText("Resources")).toBeVisible();
+  await expect(sidebar.getByText("Resources")).toBeVisible();
 });

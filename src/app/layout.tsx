@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Sidebar } from "@/components/sidebar";
+import { Footer } from "@/components/footer";
+import { MobileNav } from "@/components/mobile-nav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const interTight = Inter_Tight({
@@ -27,7 +30,15 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          {children}
+          <div className="mx-auto flex min-h-screen max-w-6xl flex-col md:flex-row">
+            <div className="hidden md:block md:w-64 md:shrink-0 md:border-r md:border-border">
+              <div className="sticky top-0">
+                <Sidebar />
+              </div>
+            </div>
+            <MobileNav />
+            <main className="flex-1 px-6 py-10 md:px-12">{children}</main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
