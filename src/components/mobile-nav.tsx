@@ -15,7 +15,11 @@ export function MobileNav() {
         Menu
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 bg-background">
+        <div
+          className="fixed inset-0 z-50 bg-background"
+          role="dialog"
+          aria-modal="true"
+        >
           <button
             aria-label="Close menu"
             onClick={() => setOpen(false)}
