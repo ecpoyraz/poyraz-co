@@ -84,3 +84,11 @@ test("notebook detail renders post body", async ({ page }) => {
     page.getByRole("heading", { level: 2, name: "Research" }),
   ).toBeVisible();
 });
+
+test("home notebook preview shows a recent post", async ({ page }) => {
+  await page.goto("/");
+  const main = page.locator("main");
+  await expect(
+    main.getByRole("link", { name: /Launching A New Product/ }),
+  ).toBeVisible();
+});
