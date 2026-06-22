@@ -1,5 +1,6 @@
 import { getPublishedPosts } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export default function NotebookPage() {
   const posts = getPublishedPosts();
@@ -18,6 +19,7 @@ export default function NotebookPage() {
           <PostCard key={post.slug} post={post} />
         ))}
       </div>
+      <NewsletterSignup />
     </div>
   );
 }

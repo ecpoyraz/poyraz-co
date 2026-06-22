@@ -92,3 +92,10 @@ test("home notebook preview shows a recent post", async ({ page }) => {
     main.getByRole("link", { name: /Launching A New Product/ }),
   ).toBeVisible();
 });
+
+test("newsletter signup shows thank-you after submit", async ({ page }) => {
+  await page.goto("/notebook");
+  await page.getByLabel("Email address").fill("test@example.com");
+  await page.getByRole("button", { name: "Submit" }).click();
+  await expect(page.getByText("Thanks for subscribing.")).toBeVisible();
+});
