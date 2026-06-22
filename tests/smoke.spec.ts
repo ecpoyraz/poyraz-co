@@ -61,3 +61,13 @@ for (const route of ROUTES) {
     await expect(page.locator("h1")).toBeVisible();
   });
 }
+
+test("notebook list shows post titles", async ({ page }) => {
+  await page.goto("/notebook");
+  await expect(
+    page.getByRole("link", { name: /How To Use ChatGPT As A Marketer/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Launching A New Product/ }),
+  ).toBeVisible();
+});
