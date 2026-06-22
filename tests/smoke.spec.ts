@@ -44,3 +44,20 @@ test("sidebar shows grouped nav links", async ({ page }) => {
   );
   await expect(sidebar.getByText("Resources")).toBeVisible();
 });
+
+const ROUTES = [
+  "/projects",
+  "/services",
+  "/about",
+  "/bookmarks",
+  "/notebook",
+  "/stack",
+  "/contact",
+];
+for (const route of ROUTES) {
+  test(`route ${route} renders without 404`, async ({ page }) => {
+    const res = await page.goto(route);
+    expect(res?.status()).toBeLessThan(400);
+    await expect(page.locator("h1")).toBeVisible();
+  });
+}
