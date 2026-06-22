@@ -8,7 +8,7 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 }
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: { unoptimized: true },
 };
 
 export default nextConfig;

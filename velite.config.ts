@@ -10,7 +10,7 @@ const notebook = defineCollection({
       slug: s.slug("notebook"),
       category: s.enum(["Article", "Case Study"]),
       excerpt: s.string(),
-      cover: s.image().optional(),
+      cover: s.string().optional(),
       draft: s.boolean().default(false),
       code: s.mdx(),
     })
@@ -26,12 +26,43 @@ const projects = defineCollection({
       slug: s.slug("projects"),
       category: s.string(),
       summary: s.string(),
-      cover: s.image().optional(),
+      cover: s.string().optional(),
       order: s.number().default(0),
+      tags: s.array(s.string()).default([]),
       draft: s.boolean().default(false),
       code: s.mdx(),
     })
     .transform((data) => ({ ...data, permalink: `/projects/${data.slug}` })),
+});
+
+const stack = defineCollection({
+  name: "Tool",
+  pattern: "stack/*.mdx",
+  schema: s
+    .object({
+      name: s.string(),
+      slug: s.slug("stack"),
+      category: s.string(),
+      url: s.string().url(),
+      description: s.string(),
+      logo: s.string().optional(),
+      draft: s.boolean().default(false),
+      code: s.mdx(),
+    })
+    .transform((data) => ({ ...data, permalink: `/stack/${data.slug}` })),
+});
+
+const bookmarks = defineCollection({
+  name: "Bookmark",
+  pattern: "bookmarks/*.md",
+  schema: s.object({
+    title: s.string(),
+    url: s.string().url(),
+    tags: s.array(s.string()).default([]),
+    image: s.string().optional(),
+    date: s.isodate(),
+    draft: s.boolean().default(false),
+  }),
 });
 
 export default defineConfig({
@@ -43,5 +74,5 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { notebook, projects },
+  collections: { notebook, projects, stack, bookmarks },
 });

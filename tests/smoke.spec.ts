@@ -68,7 +68,7 @@ test("notebook list shows post titles", async ({ page }) => {
     page.getByRole("link", { name: /How To Use ChatGPT As A Marketer/ }),
   ).toBeVisible();
   await expect(
-    page.getByRole("link", { name: /Launching A New Product/ }),
+    page.getByRole("link", { name: /Launching New Product/ }),
   ).toBeVisible();
 });
 
@@ -89,7 +89,7 @@ test("home notebook preview shows a recent post", async ({ page }) => {
   await page.goto("/");
   const main = page.locator("main");
   await expect(
-    main.getByRole("link", { name: /Launching A New Product/ }),
+    main.getByRole("link", { name: /Launching New Product/ }),
   ).toBeVisible();
 });
 
@@ -116,7 +116,7 @@ test("project detail renders body", async ({ page }) => {
     page.getByRole("heading", { level: 1, name: /Param - Embedded Finance/ }),
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { level: 2, name: "Overview" }),
+    page.getByRole("heading", { level: 2, name: "Param Overview" }),
   ).toBeVisible();
 });
 
@@ -126,5 +126,27 @@ test("home projects preview shows a project", async ({ page }) => {
     page
       .locator("main")
       .getByRole("link", { name: /Param - Embedded Finance/ }),
+  ).toBeVisible();
+});
+
+test("bookmarks page renders grid", async ({ page }) => {
+  await page.goto("/bookmarks");
+  await expect(page.locator("h1")).toBeVisible();
+  await expect(page.locator("main a").first()).toBeVisible();
+});
+
+test("stack list shows tools", async ({ page }) => {
+  await page.goto("/stack");
+  await expect(page.getByRole("link", { name: /Notion/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Mixpanel/ })).toBeVisible();
+});
+
+test("stack detail renders body", async ({ page }) => {
+  await page.goto("/stack/notion");
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Notion" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 2, name: "How I use it" }),
   ).toBeVisible();
 });
