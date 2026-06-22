@@ -1,9 +1,8 @@
 import { notebook } from "#content";
+import { published } from "@/lib/collections";
 
 export type Post = (typeof notebook)[number];
 
 export function getPublishedPosts(): Post[] {
-  return notebook
-    .filter((p) => !p.draft)
-    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  return published([...notebook]);
 }

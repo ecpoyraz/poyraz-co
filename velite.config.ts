@@ -17,6 +17,23 @@ const notebook = defineCollection({
     .transform((data) => ({ ...data, permalink: `/notebook/${data.slug}` })),
 });
 
+const projects = defineCollection({
+  name: "Project",
+  pattern: "projects/*.mdx",
+  schema: s
+    .object({
+      title: s.string(),
+      slug: s.slug("projects"),
+      category: s.string(),
+      summary: s.string(),
+      cover: s.image().optional(),
+      order: s.number().default(0),
+      draft: s.boolean().default(false),
+      code: s.mdx(),
+    })
+    .transform((data) => ({ ...data, permalink: `/projects/${data.slug}` })),
+});
+
 export default defineConfig({
   root: "content",
   output: {
@@ -26,5 +43,5 @@ export default defineConfig({
     name: "[name]-[hash:6].[ext]",
     clean: true,
   },
-  collections: { notebook },
+  collections: { notebook, projects },
 });

@@ -1,6 +1,9 @@
 import { Footer } from "@/components/footer";
 import { getPublishedPosts } from "@/lib/posts";
 import { PostCard } from "@/components/post-card";
+import { projects } from "#content";
+import { published } from "@/lib/collections";
+import { ProjectCard } from "@/components/project-card";
 
 export default function Home() {
   return (
@@ -16,6 +19,13 @@ export default function Home() {
       </section>
       <section>
         <h2 className="font-display text-2xl font-semibold">Projects</h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {published([...projects])
+            .slice(0, 2)
+            .map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+        </div>
       </section>
       <section>
         <h2 className="font-display text-2xl font-semibold">Notebook</h2>

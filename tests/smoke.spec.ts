@@ -99,3 +99,32 @@ test("newsletter signup shows thank-you after submit", async ({ page }) => {
   await page.getByRole("button", { name: "Submit" }).click();
   await expect(page.getByText("Thanks for subscribing.")).toBeVisible();
 });
+
+test("projects list shows project titles", async ({ page }) => {
+  await page.goto("/projects");
+  await expect(
+    page.getByRole("link", { name: /Param - Embedded Finance/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Peerbie - AI Productivity Tool/ }),
+  ).toBeVisible();
+});
+
+test("project detail renders body", async ({ page }) => {
+  await page.goto("/projects/param-embedded-finance");
+  await expect(
+    page.getByRole("heading", { level: 1, name: /Param - Embedded Finance/ }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 2, name: "Overview" }),
+  ).toBeVisible();
+});
+
+test("home projects preview shows a project", async ({ page }) => {
+  await page.goto("/");
+  await expect(
+    page
+      .locator("main")
+      .getByRole("link", { name: /Param - Embedded Finance/ }),
+  ).toBeVisible();
+});
