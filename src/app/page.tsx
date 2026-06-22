@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/components/theme-toggle";
+
 export default function Home() {
   return (
     <div>
@@ -6,6 +8,7 @@ export default function Home() {
         Explore my work as a marketer with a track record of scaling tech
         products to maximize user value.
       </p>
+      <ThemeToggle />
     </div>
   );
 }

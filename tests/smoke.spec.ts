@@ -21,3 +21,10 @@ test("body uses the Inter font family", async ({ page }) => {
   );
   expect(family.toLowerCase()).toContain("inter");
 });
+
+test("theme toggle switches html to dark", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
+  await page.getByLabel("Toggle theme").click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+});
