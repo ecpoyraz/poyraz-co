@@ -71,3 +71,16 @@ test("notebook list shows post titles", async ({ page }) => {
     page.getByRole("link", { name: /Launching A New Product/ }),
   ).toBeVisible();
 });
+
+test("notebook detail renders post body", async ({ page }) => {
+  await page.goto("/notebook/how-to-use-chatgpt-as-a-marketer");
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: /How To Use ChatGPT As A Marketer/,
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { level: 2, name: "Research" }),
+  ).toBeVisible();
+});
