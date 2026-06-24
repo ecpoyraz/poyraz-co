@@ -11,6 +11,7 @@ export function StackCard({ tool }: { tool: (typeof stack)[number] }) {
           alt={tool.name}
           width={40}
           height={40}
+          unoptimized={tool.logo.endsWith(".svg")}
           className="size-10 shrink-0 rounded-lg border border-border bg-white object-contain p-1.5"
         />
       )}

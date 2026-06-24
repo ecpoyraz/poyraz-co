@@ -65,6 +65,7 @@ export default async function ToolPage({
               alt={tool.name}
               width={48}
               height={48}
+              unoptimized={tool.logo.endsWith(".svg")}
               className="size-12 shrink-0 rounded-xl border border-border bg-white object-contain p-1.5"
             />
           )}

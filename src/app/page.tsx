@@ -50,8 +50,12 @@ export default function Home() {
           Projects
         </h2>
         <div className="grid gap-6 sm:grid-cols-2">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {featuredProjects.map((project, i) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              priority={i === 0}
+            />
           ))}
         </div>
       </section>

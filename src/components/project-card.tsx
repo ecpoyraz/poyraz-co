@@ -4,8 +4,10 @@ import type { projects } from "#content";
 
 export function ProjectCard({
   project,
+  priority = false,
 }: {
   project: (typeof projects)[number];
+  priority?: boolean;
 }) {
   return (
     <Link href={project.permalink} className="group flex flex-col gap-3">
@@ -16,6 +18,8 @@ export function ProjectCard({
             alt={project.title}
             width={800}
             height={450}
+            priority={priority}
+            sizes="(max-width: 640px) 100vw, 400px"
             className="aspect-[16/10] w-full object-cover"
           />
         )}

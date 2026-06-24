@@ -7,8 +7,6 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
   import("velite").then((m) => m.build({ watch: isDev, clean: !isDev }));
 }
 
-const nextConfig: NextConfig = {
-  images: { unoptimized: true },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
