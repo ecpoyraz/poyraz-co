@@ -56,7 +56,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="reveal reveal-2 rounded-2xl border border-border p-6 sm:p-7">
+      <section className="reveal reveal-2 rounded-2xl border border-border bg-card p-6 sm:p-7">
         <h2 className="font-display text-2xl font-semibold tracking-tight">
           Notebook
         </h2>
@@ -112,7 +112,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="reveal reveal-4 rounded-2xl border border-border p-6 sm:p-7">
+      <section className="reveal reveal-4 rounded-2xl border border-border bg-card p-6 sm:p-7">
         <h2 className="font-display text-2xl font-semibold tracking-tight">
           Tech Stack
         </h2>
@@ -135,7 +135,7 @@ export default function Home() {
       </section>
 
       <section className="reveal reveal-5 grid gap-5 sm:grid-cols-2">
-        <div className="flex flex-col items-start gap-2 rounded-2xl border border-border p-6">
+        <div className="flex flex-col items-start gap-2 rounded-2xl border border-border bg-card p-6">
           <h3 className="font-display text-lg font-semibold tracking-tight">
             Discover Call (Free)
           </h3>
@@ -149,7 +149,7 @@ export default function Home() {
             Schedule Call
           </Link>
         </div>
-        <div className="flex flex-col items-start gap-2 rounded-2xl border border-border p-6">
+        <div className="flex flex-col items-start gap-2 rounded-2xl border border-border bg-card p-6">
           <h3 className="font-display text-lg font-semibold tracking-tight">
             Product Growth Consultancy
           </h3>

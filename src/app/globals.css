@@ -7,9 +7,9 @@
   --background: #ffffff;
   --foreground: #0a0a0a;
   --muted: #6b7280;
-  --subtle: #f6f6f7;
-  --border: #e9e9ec;
-  --card: #ffffff;
+  --subtle: #ededf1;
+  --border: #e7e7eb;
+  --card: #f7f7f9;
   --accent: #2563eb;
 }
 
@@ -17,9 +17,9 @@
   --background: #0a0a0b;
   --foreground: #f4f4f5;
   --muted: #9b9ba4;
-  --subtle: #161619;
+  --subtle: #1c1c20;
   --border: #26262b;
-  --card: #121215;
+  --card: #131316;
   --accent: #6699ff;
 }
 
@@ -43,7 +43,7 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans), sans-serif;
-    font-optical-sizing: auto;
+    font-feature-settings: "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

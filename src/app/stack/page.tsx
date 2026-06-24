@@ -35,7 +35,7 @@ export default function StackPage() {
         return (
           <section
             key={group.title}
-            className="rounded-2xl border border-border p-6 sm:p-7"
+            className="rounded-2xl border border-border bg-card p-6 sm:p-7"
           >
             <h2 className="font-display text-lg font-semibold tracking-tight">
               {group.title}
@@ -49,7 +49,7 @@ export default function StackPage() {
         );
       })}
 
-      <div className="rounded-2xl border border-border bg-subtle p-6 sm:p-7">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
         <NewsletterSignup
           title="Never miss a new tool"
           subtitle="Get notified as soon as I add new tools to my stack."

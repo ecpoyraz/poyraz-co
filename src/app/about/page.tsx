@@ -118,7 +118,7 @@ export default function AboutPage() {
           {experience.map((job) => (
             <div
               key={job.company}
-              className="flex items-start gap-4 rounded-2xl border border-border p-5"
+              className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5"
             >
               <Image
                 src={job.logo}

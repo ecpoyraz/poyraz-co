@@ -87,7 +87,7 @@ export default async function ToolPage({
       </article>
 
       {similar.length > 0 && (
-        <section className="rounded-2xl border border-border p-6 sm:p-7">
+        <section className="rounded-2xl border border-border bg-card p-6 sm:p-7">
           <h2 className="font-display text-lg font-semibold tracking-tight">
             Similar Apps
           </h2>
@@ -99,7 +99,7 @@ export default async function ToolPage({
         </section>
       )}
 
-      <div className="rounded-2xl border border-border bg-subtle p-6 sm:p-7">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
         <NewsletterSignup
           title="Never miss a new tool"
           subtitle="Get notified as soon as I add new tools to my stack."

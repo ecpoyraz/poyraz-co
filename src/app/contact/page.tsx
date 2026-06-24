@@ -54,14 +54,14 @@ export default function ContactPage() {
         </a>
       </div>
 
-      <div className="rounded-2xl border border-border p-6 sm:p-7">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
         <h2 className="mb-4 font-display text-lg font-semibold tracking-tight">
           Send message
         </h2>
         <ContactForm />
       </div>
 
-      <div className="rounded-2xl border border-border p-6 sm:p-7">
+      <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
         <h2 className="font-display text-lg font-semibold tracking-tight">
           Schedule Call
         </h2>

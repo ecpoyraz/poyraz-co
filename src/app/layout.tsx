@@ -36,7 +36,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="flex min-h-screen flex-col md:flex-row">
-            <aside className="hidden md:block md:w-64 md:shrink-0 md:border-r md:border-border">
+            <aside className="hidden md:block md:w-64 md:shrink-0 md:border-r md:border-border md:bg-card">
               <div className="sticky top-0 flex h-screen flex-col">
                 <Sidebar />
               </div>
