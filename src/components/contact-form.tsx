@@ -1,0 +1,82 @@
+"use client";
+
+import { useState } from "react";
+
+type Status = "idle" | "loading" | "success" | "error";
+
+export function ContactForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    setStatus("loading");
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const json = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(json.error || "Something went wrong.");
+      }
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <p className="text-sm text-foreground">
+        Thanks, your message has been sent. I will get back to you soon.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="grid gap-3 sm:grid-cols-2">
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          aria-label="Name"
+          className="rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+        />
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Email"
+          aria-label="Email"
+          className="rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+        />
+      </div>
+      <textarea
+        name="message"
+        required
+        rows={5}
+        placeholder="Your message"
+        aria-label="Your message"
+        className="mt-3 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+      />
+      {status === "error" && (
+        <p className="mt-2 text-sm text-red-500">{error}</p>
+      )}
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="mt-3 w-full rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition hover:opacity-90 disabled:opacity-60"
+      >
+        {status === "loading" ? "Sending..." : "Submit"}
+      </button>
+    </form>
+  );
+}

@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { notebook } from "#content";
@@ -7,6 +9,17 @@ import { Footer } from "@/components/footer";
 
 export function generateStaticParams() {
   return notebook.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = notebook.find((p) => p.slug === slug);
+  if (!post) return {};
+  return { title: post.title, description: post.excerpt };
 }
 
 export default async function PostPage({
@@ -35,6 +48,15 @@ export default async function PostPage({
             {post.title}
           </h1>
         </div>
+        {post.cover && (
+          <Image
+            src={post.cover}
+            alt={post.title}
+            width={1280}
+            height={720}
+            className="w-full rounded-2xl border border-border"
+          />
+        )}
       </header>
       <article className="prose prose-neutral max-w-none dark:prose-invert">
         <MDXContent code={post.code} />

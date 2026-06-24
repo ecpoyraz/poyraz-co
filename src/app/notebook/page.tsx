@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { getPublishedPosts } from "@/lib/posts";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: "Notebook",
+  description:
+    "A selection of ideas and thoughts to inspire, learn, and create.",
+};
 
 export default function NotebookPage() {
   const posts = getPublishedPosts();
@@ -16,37 +23,36 @@ export default function NotebookPage() {
           A selection of ideas and thoughts to inspire, learn, and create.
         </p>
       </header>
-      <div className="flex flex-col">
+      <div className="grid gap-6 sm:grid-cols-2">
         {posts.map((post) => (
           <Link
             key={post.slug}
             href={post.permalink}
-            className="group flex items-center gap-4 border-b border-border py-5 last:border-0"
+            className="group flex flex-col gap-3"
           >
-            {post.cover && (
-              <Image
-                src={post.cover}
-                alt=""
-                width={48}
-                height={48}
-                className="size-12 shrink-0 rounded-lg border border-border object-cover"
-              />
-            )}
-            <div className="flex min-w-0 flex-col gap-0.5">
-              <span className="font-display text-[17px] font-semibold tracking-tight text-foreground transition group-hover:text-accent">
+            <div className="overflow-hidden rounded-xl border border-border bg-subtle">
+              {post.cover && (
+                <Image
+                  src={post.cover}
+                  alt={post.title}
+                  width={800}
+                  height={450}
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              )}
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-display text-[15px] font-semibold tracking-tight text-foreground transition group-hover:text-accent">
                 {post.title}
               </span>
-              <span className="truncate text-sm text-muted">
-                {post.excerpt}
-              </span>
+              <span className="text-xs text-muted">{post.category}</span>
             </div>
-            <span className="ml-auto hidden shrink-0 rounded-full border border-border bg-subtle px-2.5 py-0.5 text-xs text-muted sm:block">
-              {post.category}
-            </span>
           </Link>
         ))}
       </div>
-      <NewsletterSignup />
+      <div className="border-t border-border pt-8">
+        <NewsletterSignup />
+      </div>
       <Footer />
     </div>
   );

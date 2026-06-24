@@ -11,7 +11,7 @@ export function BookmarkCard({
       href={bookmark.url}
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition duration-200 hover:border-foreground/15 hover:shadow-[0_10px_34px_-16px_rgba(0,0,0,0.2)]"
+      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card"
     >
       {bookmark.image && (
         <div className="overflow-hidden border-b border-border bg-subtle">
@@ -20,12 +20,12 @@ export function BookmarkCard({
             alt={bookmark.title}
             width={600}
             height={340}
-            className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+            className="aspect-[16/9] w-full object-cover"
           />
         </div>
       )}
       <div className="flex flex-col gap-2 p-4">
-        <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
+        <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent">
           {bookmark.title}
         </span>
         <div className="flex flex-wrap gap-1.5">

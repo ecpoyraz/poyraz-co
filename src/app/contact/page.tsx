@@ -1,4 +1,15 @@
+import type { Metadata } from "next";
+import { Copy } from "lucide-react";
+
 import { Footer } from "@/components/footer";
+import { XIcon, LinkedInIcon } from "@/components/social-icons";
+import { ContactForm } from "@/components/contact-form";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "I'm always looking to collaborate on interesting projects with great people.",
+};
 
 export default function ContactPage() {
   return (
@@ -8,35 +19,60 @@ export default function ContactPage() {
           Contact
         </h1>
         <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
-          Need a supportive hand? Send me a message and let&apos;s talk.
+          I&apos;m always looking to collaborate on interesting projects with
+          great people. Need a supportive hand? I have two!
         </p>
       </header>
-      <form className="flex max-w-xl flex-col gap-4">
-        <input
-          type="text"
-          placeholder="Your name"
-          aria-label="Your name"
-          className="rounded-lg border border-border bg-background px-3 py-2.5 text-sm"
-        />
-        <input
-          type="email"
-          placeholder="Your email"
-          aria-label="Your email"
-          className="rounded-lg border border-border bg-background px-3 py-2.5 text-sm"
-        />
-        <textarea
-          placeholder="Your message"
-          aria-label="Your message"
-          rows={5}
-          className="rounded-lg border border-border bg-background px-3 py-2.5 text-sm"
-        />
-        <button
-          type="submit"
-          className="w-fit rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
+
+      <div className="flex flex-wrap gap-2.5">
+        <a
+          href="mailto:hi@poyraz.co"
+          className="inline-flex items-center gap-2 rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
         >
+          <Copy className="size-3.5" />
+          E-Mail
+        </a>
+        <a
+          href="https://x.com/eyuppoyraz"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
+        >
+          <XIcon className="size-3.5" />X
+        </a>
+        <a
+          href="https://www.linkedin.com/in/eyuppoyraz/"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
+        >
+          <LinkedInIcon className="size-3.5" />
+          Linkedin
+        </a>
+      </div>
+
+      <div className="rounded-2xl border border-border p-6 sm:p-7">
+        <h2 className="mb-4 font-display text-lg font-semibold tracking-tight">
           Send message
-        </button>
-      </form>
+        </h2>
+        <ContactForm />
+      </div>
+
+      <div className="rounded-2xl border border-border p-6 sm:p-7">
+        <h2 className="font-display text-lg font-semibold tracking-tight">
+          Schedule Call
+        </h2>
+        <p className="mt-1 text-sm text-muted">Book a 30 minute intro call.</p>
+        <a
+          href="https://cal.com/eyup-poyraz-mb4tp0/30min"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-4 inline-flex rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
+        >
+          Schedule Call
+        </a>
+      </div>
+
       <Footer />
     </div>
   );

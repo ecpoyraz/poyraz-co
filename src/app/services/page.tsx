@@ -1,22 +1,39 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/footer";
 
+export const metadata: Metadata = {
+  title: "Services",
+  description:
+    "I help companies build growth momentum and scale their product.",
+};
+
 const SERVICES = [
   {
-    title: "Growth Strategy",
-    desc: "Tailored advice to support your growth and fix the bottlenecks holding you back.",
+    title: "Discovery Call",
+    desc: "Intro chat to see if we're a good fit.",
+    bullets: [
+      "Learn your product & goals",
+      "Share my growth approach",
+      "Agree on next steps",
+    ],
+    cta: "Book Free Call",
   },
   {
-    title: "KPI & Tool Setup",
-    desc: "Define the metrics that matter and set up the analytics stack to track them.",
+    title: "Consultancy",
+    desc: "Tailored advice to support your growth and fix bottlenecks",
+    bullets: ["Growth audit", "90-day action plan", "KPI & tool setup"],
+    cta: "Get consultancy",
   },
   {
-    title: "Product Marketing",
-    desc: "Positioning, go-to-market, and launch motions that move activation.",
-  },
-  {
-    title: "Funnel Optimization",
-    desc: "Find and fix the leaks across acquisition, activation, and retention.",
+    title: "Kickstarter",
+    desc: "Hands on execution",
+    bullets: [
+      "Run weekly experiments",
+      "Build campaigns & automations",
+      "Track and report results",
+    ],
+    cta: "Launch with me",
   },
 ];
 
@@ -25,41 +42,40 @@ export default function ServicesPage() {
     <div className="flex flex-col gap-10">
       <header className="flex flex-col gap-3">
         <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          Services
+          Services{" "}
+          <span className="text-muted font-medium">
+            Let&apos;s Build Momentum
+          </span>
         </h1>
         <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
-          I help companies build growth momentum and scale their product. Here
-          is how we can work together.
+          I help companies to build growth momentum and scale their product
         </p>
       </header>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         {SERVICES.map((s) => (
           <div
             key={s.title}
-            className="flex flex-col gap-2 rounded-xl border border-border p-5"
+            className="flex h-full flex-col rounded-2xl border border-border p-6"
           >
-            <span className="font-display text-base font-semibold tracking-tight">
+            <span className="font-display text-xl font-semibold tracking-tight">
               {s.title}
             </span>
-            <span className="text-sm leading-relaxed text-muted">{s.desc}</span>
+            <p className="mt-2 text-sm text-muted">{s.desc}</p>
+            <ul className="mt-4 flex flex-col gap-1.5 text-sm text-muted">
+              {s.bullets.map((bullet) => (
+                <li key={bullet}>&bull; {bullet}</li>
+              ))}
+            </ul>
+            <div className="mt-auto pt-5">
+              <Link
+                href="/contact"
+                className="inline-flex rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
+              >
+                {s.cta}
+              </Link>
+            </div>
           </div>
         ))}
-      </div>
-      <div className="flex flex-col gap-4 rounded-2xl border border-border bg-subtle p-6 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-col gap-0.5">
-          <span className="font-display text-lg font-semibold tracking-tight">
-            Discover Call (Free)
-          </span>
-          <span className="text-sm text-muted">
-            Let&apos;s meet and discuss how we can collaborate.
-          </span>
-        </div>
-        <Link
-          href="/contact"
-          className="w-fit rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:opacity-90"
-        >
-          Schedule Call
-        </Link>
       </div>
       <Footer />
     </div>

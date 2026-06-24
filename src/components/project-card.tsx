@@ -16,12 +16,12 @@ export function ProjectCard({
             alt={project.title}
             width={800}
             height={450}
-            className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+            className="aspect-[16/10] w-full object-cover"
           />
         )}
       </div>
       <div className="flex items-center justify-between gap-3 px-1">
-        <span className="font-display text-[15px] font-semibold tracking-tight text-foreground">
+        <span className="font-display text-[15px] font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
           {project.title}
         </span>
         <span className="shrink-0 rounded-full border border-border bg-subtle px-2.5 py-0.5 text-xs text-muted">

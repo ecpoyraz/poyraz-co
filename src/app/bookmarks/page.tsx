@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { bookmarks } from "#content";
 import { published } from "@/lib/collections";
 import { BookmarkCard } from "@/components/bookmark-card";
 import { Footer } from "@/components/footer";
+
+export const metadata: Metadata = {
+  title: "Bookmarks",
+  description: "Discover and stay updated through small content bites.",
+};
 
 export default function BookmarksPage() {
   const items = published([...bookmarks]);
@@ -12,7 +18,7 @@ export default function BookmarksPage() {
           Bookmarks
         </h1>
         <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
-          A curated collection of resources, articles, and tools worth saving.
+          Discover, and stay updated through small content bites.
         </p>
       </header>
       <div className="grid gap-5 sm:grid-cols-2">

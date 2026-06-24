@@ -4,10 +4,7 @@ import type { stack } from "#content";
 
 export function StackCard({ tool }: { tool: (typeof stack)[number] }) {
   return (
-    <Link
-      href={tool.permalink}
-      className="group flex items-center gap-3 rounded-xl border border-border p-4 transition duration-200 hover:border-foreground/15 hover:bg-subtle"
-    >
+    <Link href={tool.permalink} className="group flex items-center gap-3">
       {tool.logo && (
         <Image
           src={tool.logo}
@@ -18,7 +15,7 @@ export function StackCard({ tool }: { tool: (typeof stack)[number] }) {
         />
       )}
       <div className="flex min-w-0 flex-col">
-        <span className="font-display text-[15px] font-semibold tracking-tight text-foreground transition group-hover:text-accent">
+        <span className="text-sm font-semibold tracking-tight text-foreground transition group-hover:text-accent">
           {tool.name}
         </span>
         <span className="truncate text-xs text-muted">{tool.category}</span>
