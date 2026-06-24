@@ -6,15 +6,6 @@ export function ThirdPartyScripts() {
   if (process.env.NODE_ENV !== "production") return null;
   return (
     <>
-      <Script id="smartlook" strategy="afterInteractive">
-        {`window.smartlook||(function(d) {
-var o=window.smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
-var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
-c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
-})(document);
-window.smartlook('init', 'e4de8446333c51964db0618e808f9f215ac6192a', { region: 'eu' });`}
-      </Script>
-
       <Script id="apollo" strategy="afterInteractive">
         {`function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
 o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
