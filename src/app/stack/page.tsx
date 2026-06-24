@@ -3,30 +3,14 @@ import { stack } from "#content";
 import { StackCard } from "@/components/stack-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Footer } from "@/components/footer";
+import { GROUPS } from "@/lib/stack-groups";
 
 export const metadata: Metadata = {
   title: "Stack",
   description: "Tools, resources and software I use daily.",
+  alternates: { canonical: "/stack" },
+  openGraph: { url: "/stack" },
 };
-
-const GROUPS: { title: string; slugs: string[] }[] = [
-  {
-    title: "Design & Build",
-    slugs: ["n8n", "chatgpt", "framer", "lovable", "figma"],
-  },
-  {
-    title: "Data & Analytics",
-    slugs: ["mixpanel", "looker-studio", "adjust"],
-  },
-  {
-    title: "CRM & Engagement",
-    slugs: ["intercom", "hubspot", "insider"],
-  },
-  {
-    title: "Work Management",
-    slugs: ["notion", "arc"],
-  },
-];
 
 export default function StackPage() {
   const tools = [...stack].filter((t) => !t.draft);

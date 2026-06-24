@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "Bookmarks",
   description: "Discover and stay updated through small content bites.",
+  alternates: { canonical: "/bookmarks" },
+  openGraph: { url: "/bookmarks" },
 };
 
 export default function BookmarksPage() {

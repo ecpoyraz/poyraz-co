@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   title: "Projects",
   description:
     "Designing memorable digital experiences. Each project reflects my passion for driving growth and user engagement.",
+  alternates: { canonical: "/projects" },
+  openGraph: { url: "/projects" },
 };
 
 export default function ProjectsPage() {

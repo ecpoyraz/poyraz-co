@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "Notebook",
   description:
     "A selection of ideas and thoughts to inspire, learn, and create.",
+  alternates: { canonical: "/notebook" },
+  openGraph: { url: "/notebook" },
 };
 
 export default function NotebookPage() {

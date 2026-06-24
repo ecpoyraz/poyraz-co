@@ -14,6 +14,8 @@ import { BookmarkCard } from "@/components/bookmark-card";
 export const metadata: Metadata = {
   description:
     "Explore my work as a marketer with a track record of scaling tech products to maximize user value.",
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
 };
 
 export default function Home() {

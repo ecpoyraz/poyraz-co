@@ -19,7 +19,19 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = notebook.find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: post.title, description: post.excerpt };
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: post.permalink },
+    openGraph: {
+      type: "article",
+      url: post.permalink,
+      title: post.title,
+      description: post.excerpt,
+      images: post.cover ? [post.cover] : undefined,
+    },
+    twitter: { images: post.cover ? [post.cover] : undefined },
+  };
 }
 
 export default async function PostPage({

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
@@ -40,11 +41,12 @@ export default function RootLayout({
               </div>
             </aside>
             <MobileNav />
-            <main className="flex-1 px-6 py-10 md:px-12">
+            <main className="flex-1 px-6 pt-8 pb-28 md:px-12 md:py-10">
               <div className="mx-auto max-w-3xl">{children}</div>
             </main>
           </div>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-FZREW91PD2" />
       </body>
     </html>
   );

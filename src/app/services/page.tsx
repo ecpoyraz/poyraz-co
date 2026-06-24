@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Services",
   description:
     "I help companies build growth momentum and scale their product.",
+  alternates: { canonical: "/services" },
+  openGraph: { url: "/services" },
 };
 
 const SERVICES = [

@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "From Aegean's heart, I am Eyup, an engineer and product marketer blending product, marketing and data.",
+  alternates: { canonical: "/about" },
+  openGraph: { url: "/about" },
 };
 
 const experience = [

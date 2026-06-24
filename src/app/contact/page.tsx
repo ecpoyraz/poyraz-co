@@ -4,11 +4,14 @@ import { Copy } from "lucide-react";
 import { Footer } from "@/components/footer";
 import { XIcon, LinkedInIcon } from "@/components/social-icons";
 import { ContactForm } from "@/components/contact-form";
+import { CalEmbed } from "@/components/cal-embed";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "I'm always looking to collaborate on interesting projects with great people.",
+  alternates: { canonical: "/contact" },
+  openGraph: { url: "/contact" },
 };
 
 export default function ContactPage() {
@@ -63,14 +66,9 @@ export default function ContactPage() {
           Schedule Call
         </h2>
         <p className="mt-1 text-sm text-muted">Book a 30 minute intro call.</p>
-        <a
-          href="https://cal.com/eyup-poyraz-mb4tp0/30min"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-4 inline-flex rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition hover:opacity-90"
-        >
-          Schedule Call
-        </a>
+        <div className="mt-4">
+          <CalEmbed />
+        </div>
       </div>
 
       <Footer />
