@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Sidebar } from "@/components/sidebar";
@@ -47,6 +48,7 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-FZREW91PD2" />
+        <ThirdPartyScripts />
       </body>
     </html>
   );
