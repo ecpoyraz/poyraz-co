@@ -16,10 +16,11 @@ export function ProjectCard({
           <Image
             src={project.cover}
             alt={project.title}
-            width={800}
-            height={450}
+            width={1600}
+            height={1000}
+            quality={90}
             priority={priority}
-            sizes="(max-width: 640px) 100vw, 400px"
+            sizes="(max-width: 768px) 100vw, 800px"
             className="aspect-[16/10] w-full object-cover"
           />
         )}

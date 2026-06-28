@@ -78,8 +78,11 @@ export default async function ProjectPage({
           <Image
             src={project.cover}
             alt={project.title}
-            width={1280}
-            height={720}
+            width={1600}
+            height={1000}
+            quality={90}
+            priority
+            sizes="(max-width: 768px) 100vw, 768px"
             className="w-full rounded-2xl border border-border"
           />
         )}

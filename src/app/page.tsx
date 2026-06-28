@@ -8,6 +8,7 @@ import { getPublishedPosts } from "@/lib/posts";
 import { projects, stack, bookmarks } from "#content";
 import { published } from "@/lib/collections";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectsCarousel } from "@/components/projects-carousel";
 import { StackCard } from "@/components/stack-card";
 import { BookmarkCard } from "@/components/bookmark-card";
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const posts = getPublishedPosts();
-  const featuredProjects = published([...projects]).slice(0, 2);
+  const allProjects = published([...projects]);
   const featuredStack = published([...stack]).slice(0, 6);
   const featuredBookmarks = published([...bookmarks]).slice(0, 4);
 
@@ -49,15 +50,16 @@ export default function Home() {
         <h2 className="font-display text-2xl font-semibold tracking-tight">
           Projects
         </h2>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {featuredProjects.map((project, i) => (
-            <ProjectCard
+        <ProjectsCarousel>
+          {allProjects.map((project, i) => (
+            <div
               key={project.slug}
-              project={project}
-              priority={i === 0}
-            />
+              className="w-[78%] shrink-0 snap-start sm:w-[300px]"
+            >
+              <ProjectCard project={project} priority={i === 0} />
+            </div>
           ))}
-        </div>
+        </ProjectsCarousel>
       </section>
 
       <section className="reveal reveal-2 rounded-2xl border border-border bg-card p-6 sm:p-7">
