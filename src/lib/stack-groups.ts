@@ -1,27 +1,33 @@
-export type StackGroup = { title: string; slugs: string[] };
+export type StackGroup = {
+  title: string;
+  description: string;
+  slugs: string[];
+};
 
 export const GROUPS: StackGroup[] = [
   {
-    title: "Design & Build",
-    slugs: ["n8n", "chatgpt", "framer", "lovable", "figma"],
+    title: "AI & Build",
+    description: "How I actually ship things now.",
+    slugs: ["claude-code", "codex", "n8n"],
   },
   {
-    title: "Data & Analytics",
-    slugs: ["mixpanel", "looker-studio", "adjust"],
+    title: "Growth & Analytics",
+    description: "Measuring what matters and acting on it.",
+    slugs: ["mixpanel", "microsoft-clarity", "looker-studio", "adjust"],
   },
   {
-    title: "CRM & Engagement",
-    slugs: ["intercom", "hubspot", "insider"],
+    title: "CRM & Outreach",
+    description: "Reaching, converting, and keeping users.",
+    slugs: ["insider", "intercom", "hubspot", "apollo"],
   },
   {
-    title: "Work Management",
-    slugs: ["notion", "arc"],
+    title: "Design & Creative",
+    description: "Making it look and feel right, fast.",
+    slugs: ["figma", "higgsfield"],
+  },
+  {
+    title: "Knowledge & Work",
+    description: "Where thinking and planning live.",
+    slugs: ["notion", "obsidian", "arc"],
   },
 ];
-
-// Other tools in the same group, used for the "Similar Apps" section.
-export function similarSlugs(slug: string): string[] {
-  const group = GROUPS.find((g) => g.slugs.includes(slug));
-  if (!group) return [];
-  return group.slugs.filter((s) => s !== slug);
-}

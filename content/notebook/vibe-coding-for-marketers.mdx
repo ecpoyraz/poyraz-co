@@ -1,0 +1,93 @@
+---
+title: "Vibe Coding for Marketers: Build Your Own Tool in a Weekend"
+date: 2026-06-12
+updated: 2026-06-12
+slug: vibe-coding-for-marketers
+category: Article
+excerpt: You no longer have to wait in the engineering queue for a small internal tool. A practical, opinionated guide to building the thing yourself, the right way, in a weekend.
+tags: [Vibe Coding, AI, Growth Marketing, No-Code, Product, Builder]
+cover: /images/nb-vibe-coding-for-marketers-v5.png
+draft: false
+---
+
+Every growth marketer has a graveyard of small tools they needed and never got. A proper UTM builder the whole team would actually use. A churn dashboard that joins billing to product events. A landing page for a campaign that ships this week, not next quarter. Each one was too small to justify an engineering ticket and too annoying to do by hand forever.
+
+That graveyard is now optional. With AI-assisted coding, often called **vibe coding**, a marketer who understands the problem can build the tool without waiting for anyone. This is not about becoming an engineer. It is about closing the gap between *I need a thing* and *the thing exists*.
+
+I have shipped real internal tools this way. Here is how to do it without producing a fragile mess you regret in a month.
+
+## What vibe coding actually is
+
+Vibe coding is describing what you want in plain language and letting an AI write the code, while you steer with feedback instead of syntax. You are the product manager, the QA, and the taste. The model is the pair of hands.
+
+> The mistake people make is thinking vibe coding means *not understanding what you built*. The people who get burned are the ones who never read the output. The people who win treat the AI like a very fast junior who needs clear direction and a review.
+
+It works beautifully for a specific class of problem and poorly for another. Know the difference before you start.
+
+| Good fit for vibe coding | Bad fit |
+| --- | --- |
+| Internal tools with few users | Anything handling money or auth at scale |
+| Dashboards over data you already have | Mission-critical production systems |
+| Landing pages and microsites | Tools other teams depend on daily |
+| One-off scripts and automations | Anything storing sensitive customer data |
+| Prototypes to prove an idea | A real product you will sell |
+
+If your idea lives in the left column, keep reading. If it lives in the right column, you are building a *product*, and that needs an engineer.
+
+## The five rules that separate a tool from a mess
+
+I learned each of these the hard way.
+
+1. **Pick a boring, mainstream stack.** Let the AI use the most common tools it has seen a million examples of. A popular framework plus a managed database. The model is far better at popular tools, and so is every guide you will read when something breaks.
+2. **Write a one-page brief before you prompt.** Spell out who uses it, the three things it must do, and what it explicitly will *not* do. Vague prompts produce vague software. This is the same product discipline you already have, just pointed at yourself.
+3. **Use version control from minute one.** Commit every working state. When the AI confidently breaks something that worked five minutes ago, and it will, you want a clean point to roll back to. This single habit prevents most disasters.
+4. **Give it working examples, not just descriptions.** Paste the real data shape, a sample row, the actual API response. The model guesses far less when it can see the truth.
+5. **Start a fresh context when you are stuck.** When the AI loops on the same wrong fix, the conversation has gone stale. Open a new one, paste the current code and the specific error, and ask again with a clean slate.
+
+## A worked example: a UTM builder your team will actually use
+
+Let me make this concrete. The classic broken process is everyone hand-typing UTM parameters into a spreadsheet, producing `Facebook`, `facebook`, and `FB` as three different sources that fragment your reporting forever.
+
+The brief:
+
+- **Who:** the growth and content team, maybe eight people.
+- **Must do:** enforce a fixed list of sources and mediums, generate a clean URL, copy it to the clipboard.
+- **Will not do:** store anything, manage users, or talk to analytics. It is a formatter, nothing more.
+
+The whole logic is genuinely this small:
+
+```js
+// Enforce the team's allowed values. No free text on source/medium.
+const SOURCES = ["google", "facebook", "linkedin", "newsletter"];
+const MEDIUMS = ["cpc", "social", "email", "referral"];
+
+function buildUrl(base, { source, medium, campaign }) {
+  const url = new URL(base);
+  url.searchParams.set("utm_source", source);
+  url.searchParams.set("utm_medium", medium);
+  url.searchParams.set("utm_campaign", campaign.trim().toLowerCase());
+  return url.toString();
+}
+```
+
+Wrap a few dropdowns around that, deploy it to a free host, and you have replaced a recurring source of dirty data with a thing people enjoy using. That is a *weekend*, including the part where you fight with the deploy step.
+
+The point is not this specific tool. The point is that the distance between noticing the problem and fixing it for the whole team is now measured in hours by *you*, not in quarters by someone else.
+
+## What this does to your career
+
+There is a quiet shift happening in what makes a growth marketer valuable.
+
+The old division of labor was rigid: marketers defined what they wanted, then waited for builders to build it. Most good ideas died in that wait. The marketers who can now close their own loop, prototype the dashboard, ship the microsite, automate the boring report, are simply faster than the ones who cannot.
+
+You do not need to become a software engineer. You need to become **dangerous enough to build the small things yourself**, and humble enough to know which things are not small.
+
+---
+
+<Callout variant="tip" title="The takeaway">
+
+Stop maintaining a graveyard of tools you needed and never got. The next time you catch yourself thinking *someone should build a little thing for this*, notice that the someone can be you, and the timeline can be this weekend.
+
+Keep it boring, write the brief, commit often, and never ship the thing that touches money without an engineer. Everything else is now yours to build.
+
+</Callout>

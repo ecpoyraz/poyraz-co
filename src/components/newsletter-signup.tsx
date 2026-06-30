@@ -17,6 +17,7 @@ export function NewsletterSignup({
     e.preventDefault();
     const email = new FormData(e.currentTarget).get("email");
     setStatus("loading");
+
     try {
       const res = await fetch("/api/newsletter", {
         method: "POST",

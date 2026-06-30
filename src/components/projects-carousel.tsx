@@ -31,18 +31,10 @@ export function ProjectsCarousel({ children }: { children: React.ReactNode }) {
     el.scrollBy({ left: dir * el.clientWidth * 0.85, behavior: "smooth" });
   };
 
-  // Fade only the edges that have more content to scroll toward.
-  const left = atStart ? "black 0" : "transparent 0, black 40px";
-  const right = atEnd
-    ? "black 100%"
-    : "black calc(100% - 72px), transparent 100%";
-  const mask = `linear-gradient(to right, ${left}, ${right})`;
-
   return (
     <div className="group relative">
       <div
         ref={ref}
-        style={{ maskImage: mask, WebkitMaskImage: mask }}
         className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {children}

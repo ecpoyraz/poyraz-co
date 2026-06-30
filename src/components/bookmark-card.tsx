@@ -13,8 +13,8 @@ export function BookmarkCard({
       rel="noreferrer"
       className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card"
     >
-      {bookmark.image && (
-        <div className="overflow-hidden border-b border-border bg-subtle">
+      <div className="overflow-hidden border-b border-border bg-subtle">
+        {bookmark.image ? (
           <Image
             src={bookmark.image}
             alt={bookmark.title}
@@ -22,8 +22,17 @@ export function BookmarkCard({
             height={340}
             className="aspect-[16/9] w-full object-cover"
           />
-        </div>
-      )}
+        ) : (
+          // OG image pulled straight from the source URL, no stored file.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={`/api/og?url=${encodeURIComponent(bookmark.url)}`}
+            alt=""
+            loading="lazy"
+            className="aspect-[16/9] w-full object-cover"
+          />
+        )}
+      </div>
       <div className="flex flex-col gap-2 p-4">
         <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent">
           {bookmark.title}

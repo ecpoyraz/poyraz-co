@@ -1,0 +1,122 @@
+---
+title: "The Agentic Marketing Stack: What Actually Replaced My Tools"
+date: 2026-06-29
+updated: 2026-06-29
+slug: agentic-marketing-stack
+category: Article
+excerpt: A field report on rebuilding a growth stack around AI agents and MCP. What got replaced, what survived, and the jobs no tool will ever do for you.
+tags: [AI, Growth Marketing, MCP, Agents, Marketing Stack, Automation]
+cover: /images/nb-agentic-marketing-stack-v4.png
+draft: false
+---
+
+For ten years the growth marketing stack grew in one direction: **more tools**. A tool for analytics, a tool to pipe that analytics somewhere, a tool to visualize the pipe, a tool to alert you when the visualization moved. Every problem shipped with a SaaS logo attached to it.
+
+Then agents arrived and the arrow flipped. For the first time in my career the stack is getting **smaller**, not because the work shrank but because a single capable model with the right connections now does what five disconnected products used to.
+
+This is a field report, not a prediction. It is what actually changed in the way I run growth, written from inside a fintech where the numbers are real and the mistakes are expensive.
+
+<Callout variant="info" title="The short version">
+
+Retrieval and synthesis collapsed in cost. Judgment did not. Everything an agent made cheap was the part of the job that was never the moat, and everything that stayed expensive is the part worth your time.
+
+</Callout>
+
+## The old stack was a tax on attention
+
+Here is the uncomfortable truth about the classic stack. Most of it was not doing marketing. It was **moving data between things that should have already been talking to each other**.
+
+A normal Monday used to look like this:
+
+1. Open the analytics console, pull last week's funnel.
+2. Export to a sheet because the console cannot do the cohort I want.
+3. Paste into a second tool to make the chart presentable.
+4. Write the narrative by hand in a doc.
+5. Copy the three action items into the project tracker.
+
+Five tools, one insight. Four of those five steps were **plumbing**, and plumbing is exactly the kind of work that does not survive contact with a capable agent.
+
+> The tools were never the moat. The judgment about what to look at was the moat. We just paid for the tools because the judgment had nowhere else to run.
+
+## What MCP actually changed
+
+The unlock was not "AI in marketing." We had that. Subject lines and ad copy were the first thing every model could do, and frankly the least interesting.
+
+The real shift is the [Model Context Protocol](https://modelcontextprotocol.io/), or MCP. MCP is a boring-sounding standard that does one radical thing: it lets a model **reach into your actual systems** instead of guessing about them. Analytics, the ad accounts, the warehouse, the CRM, the docs. The model stops being a clever text box and starts being an operator with hands.
+
+The difference between those two is the entire article. A text box gives you a plausible answer. An operator pulls the real number, checks it against a second source, and tells you the answer is plausible but the tracking broke on Thursday.
+
+A minimal connection looks like this. Nothing exotic, just a config that points a model at a data source it is allowed to read:
+
+```json
+{
+  "mcpServers": {
+    "analytics": {
+      "command": "npx",
+      "args": ["-y", "@example/ga4-mcp"],
+      "env": { "GA4_PROPERTY_ID": "properties/XXXXXXXX" }
+    }
+  }
+}
+```
+
+Once that link exists, the Monday ritual collapses into one sentence: *pull last week's activation funnel by acquisition channel, flag anything more than two standard deviations off the trailing eight-week mean, and draft the narrative.* The plumbing is gone. What is left is the only part that was ever marketing.
+
+## The before and after, honestly
+
+I do not believe in stack diagrams that pretend everything got replaced. Here is what genuinely changed and what did not.
+
+| Job to be done | Old stack | Now | Verdict |
+| --- | --- | --- | --- |
+| Pulling and reconciling funnel data | Analytics UI plus manual export | Agent over MCP | **Replaced** |
+| Weekly performance narrative | Written by hand | Drafted by agent, edited by me | **Replaced** |
+| Ad copy and creative variants | Copywriter plus design queue | Generated, then human-selected | **Compressed** |
+| Experiment design and analysis | Spreadsheet plus gut feeling | Agent proposes, I decide | **Compressed** |
+| Customer messaging and lifecycle | Dedicated platform | Still the platform | **Survived** |
+| Brand, positioning, taste | Me | Still me | **Untouched** |
+
+The pattern is not "AI replaced marketing." The pattern is that **retrieval and synthesis collapsed, judgment did not.** Anything that was moving or summarizing information got cheap. Anything that was deciding what matters got more valuable, because now there is more synthesized information competing for a decision.
+
+### What got replaced
+
+Reporting, reconciliation, first-draft analysis, the long tail of "can you just pull me the…" requests. This was 40 to 50 percent of the week for most growth people and almost none of it was differentiated.
+
+### What got compressed but not removed
+
+Creative and experimentation. The agent is a phenomenal *first drafter* and a terrible *final judge*. It will generate forty ad variants in a minute. Choosing the three that match the brand and the moment is still a human act, and the gap between variant twelve and variant three is where the performance lives.
+
+### What survived untouched
+
+Positioning, narrative, taste, and the political work of getting a company to actually ship the thing. No agent is going to walk into a room and convince a CFO to fund a risky channel bet. That was always the job. It is more of the job now.
+
+## How I actually run it
+
+A few principles I learned the expensive way.
+
+- **Connect read, gate write.** Let agents read everything and write nothing without a human in the loop. An agent that can pull the ad spend is a research assistant. An agent that can *change* the ad spend is a liability until you trust it deeply.
+- **Separate the analyst from the actor.** One agent investigates and reports. A different, narrowly-scoped one executes approved changes. Mixing the two is how you get confident, fast, wrong actions.
+- **Verify against a second source.** The model will hallucinate a clean number off a broken pipeline without blinking. Cross-checking is not optional, it is the whole discipline.
+- **Own the output.** If the agent drafts a wrong narrative and you ship it, that is your wrong narrative. The byline does not transfer to the tool.
+
+## The new bottleneck is taste, and that should scare you
+
+Here is the part nobody selling AI tools wants to say out loud.
+
+When everyone has the same agents connected to the same data, the analysis is no longer the edge. Two growth teams with identical MCP setups will pull the same funnel and surface the same anomalies. The work that used to take a week and *felt* like progress is now a commodity that takes a sentence.
+
+So the differentiator moves up the stack, to the two things that were always hardest and were always undervalued:
+
+1. **Asking the question worth answering.** The agent will answer anything. It has no opinion about which question matters. That is yours.
+2. **Having the taste to know which answer is right and which is plausible nonsense.**
+
+This is genuinely uncomfortable, because the industry spent a decade rewarding people for *operating tools*. That skill just depreciated. The skill that appreciated is the one that was never on a job description: judgment.
+
+---
+
+<Callout variant="tip" title="The takeaway">
+
+You are not going to win the next few years by having the best stack. Everyone will have a good stack, because a good stack is now a config file and a model. You win by being the person who asks the sharper question and trusts the right answer.
+
+The tools got smaller. The job got bigger. Build the boring connections, automate the plumbing without sentiment, and spend every hour the agents gave you back on the part of the work no agent will ever do for you.
+
+</Callout>

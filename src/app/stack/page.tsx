@@ -33,14 +33,14 @@ export default function StackPage() {
           .filter((t): t is (typeof tools)[number] => Boolean(t));
         if (groupTools.length === 0) return null;
         return (
-          <section
-            key={group.title}
-            className="rounded-2xl border border-border bg-card p-6 sm:p-7"
-          >
-            <h2 className="font-display text-lg font-semibold tracking-tight">
-              {group.title}
-            </h2>
-            <div className="mt-5 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+          <section key={group.title} className="flex flex-col gap-4">
+            <div className="flex flex-col gap-1">
+              <h2 className="font-display text-lg font-semibold tracking-tight">
+                {group.title}
+              </h2>
+              <p className="text-sm text-muted">{group.description}</p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
               {groupTools.map((tool) => (
                 <StackCard key={tool.slug} tool={tool} />
               ))}

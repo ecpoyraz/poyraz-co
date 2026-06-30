@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { bookmarks } from "#content";
 import { published } from "@/lib/collections";
-import { BookmarkCard } from "@/components/bookmark-card";
+import { BookmarksFilter } from "@/components/bookmarks-filter";
 import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -23,11 +23,7 @@ export default function BookmarksPage() {
           Discover, and stay updated through small content bites.
         </p>
       </header>
-      <div className="grid gap-5 sm:grid-cols-2">
-        {items.map((bookmark) => (
-          <BookmarkCard key={bookmark.url} bookmark={bookmark} />
-        ))}
-      </div>
+      <BookmarksFilter items={items} />
       <Footer />
     </div>
   );

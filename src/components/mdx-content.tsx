@@ -1,6 +1,9 @@
 import * as runtime from "react/jsx-runtime";
+import { mdxComponents } from "@/components/mdx-ui";
 
-const sharedComponents: Record<string, React.ComponentType> = {};
+const sharedComponents: Record<string, React.ComponentType<never>> = {
+  ...(mdxComponents as Record<string, React.ComponentType<never>>),
+};
 
 function useMDXComponent(code: string) {
   const fn = new Function(code);

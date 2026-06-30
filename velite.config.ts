@@ -7,11 +7,14 @@ const notebook = defineCollection({
     .object({
       title: s.string(),
       date: s.isodate(),
+      updated: s.isodate().optional(),
       slug: s.slug("notebook"),
       category: s.enum(["Article", "Case Study"]),
       excerpt: s.string(),
+      tags: s.array(s.string()).default([]),
       cover: s.string().optional(),
       draft: s.boolean().default(false),
+      metadata: s.metadata(),
       code: s.mdx(),
     })
     .transform((data) => ({ ...data, permalink: `/notebook/${data.slug}` })),
@@ -38,18 +41,15 @@ const projects = defineCollection({
 const stack = defineCollection({
   name: "Tool",
   pattern: "stack/*.mdx",
-  schema: s
-    .object({
-      name: s.string(),
-      slug: s.slug("stack"),
-      category: s.string(),
-      url: s.string().url(),
-      description: s.string(),
-      logo: s.string().optional(),
-      draft: s.boolean().default(false),
-      code: s.mdx(),
-    })
-    .transform((data) => ({ ...data, permalink: `/stack/${data.slug}` })),
+  schema: s.object({
+    name: s.string(),
+    slug: s.slug("stack"),
+    category: s.string(),
+    url: s.string().url(),
+    note: s.string(),
+    logo: s.string().optional(),
+    draft: s.boolean().default(false),
+  }),
 });
 
 const bookmarks = defineCollection({
@@ -59,6 +59,7 @@ const bookmarks = defineCollection({
     title: s.string(),
     url: s.string().url(),
     tags: s.array(s.string()).default([]),
+    category: s.enum(["AI", "Tools", "Growth", "Product"]).optional(),
     image: s.string().optional(),
     date: s.isodate(),
     draft: s.boolean().default(false),

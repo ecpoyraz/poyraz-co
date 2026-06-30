@@ -11,17 +11,20 @@ export function ContactForm() {
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
     setStatus("loading");
     setError("");
+
     try {
+      const formData = new FormData(form);
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(Object.fromEntries(formData)),
       });
       if (!res.ok) {
-        const json = (await res.json().catch(() => ({}))) as { error?: string };
+        const json = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
         throw new Error(json.error || "Something went wrong.");
       }
       setStatus("success");
