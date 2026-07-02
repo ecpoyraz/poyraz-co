@@ -36,9 +36,9 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  /* No global smooth scroll: it made route changes animate the scroll-to-top
+     reset (page appeared to scroll up from the previous position). Pages now
+     jump to the top instantly on navigation. */
   body {
     background: var(--background);
     color: var(--foreground);
