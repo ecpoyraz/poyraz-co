@@ -36,6 +36,11 @@
 }
 
 @layer base {
+  /* Reserve the scrollbar gutter so locking body scroll (when the menu opens)
+     does not remove the scrollbar and shift the page sideways on desktop. */
+  html {
+    scrollbar-gutter: stable;
+  }
   /* No global smooth scroll: it made route changes animate the scroll-to-top
      reset (page appeared to scroll up from the previous position). Pages now
      jump to the top instantly on navigation. */
