@@ -7,6 +7,7 @@ import { getPublishedPosts } from "@/lib/posts";
 import { projects, stack, bookmarks } from "#content";
 import { published } from "@/lib/collections";
 import { ProjectCard } from "@/components/project-card";
+import { ProjectsRail } from "@/components/projects-rail";
 import { GrowthShowcase } from "@/components/growth-showcase";
 import { StackCard } from "@/components/stack-card";
 import { ArrowUpRight } from "lucide-react";
@@ -65,7 +66,7 @@ export default function Home() {
       />
       <GrowthShowcase />
 
-      {/* Projects — single-row auto-scrolling marquee */}
+      {/* Projects — draggable rail with prev/next arrows */}
       <section className="reveal reveal-1 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <h2 className="font-display text-2xl font-semibold tracking-tight">
@@ -75,38 +76,19 @@ export default function Home() {
             Selected case studies across fintech, SaaS and crypto.
           </p>
         </div>
-        <div className="group relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-          <div className="flex w-max animate-marquee gap-5 group-hover:[animation-play-state:paused]">
-            {[...allProjects, ...allProjects].map((project, i) => {
-              const isClone = i >= allProjects.length;
-              return (
-                <div
-                  key={`${project.slug}-${i}`}
-                  className="w-[80vw] shrink-0 sm:w-[340px]"
-                >
-                  <ProjectCard
-                    project={project}
-                    overlay
-                    priority={i === 0}
-                    decorative={isClone}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex justify-end">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1 text-sm font-medium text-foreground transition hover:text-accent"
-          >
-            All projects
-            <ArrowUpRight className="size-4" />
-          </Link>
-        </div>
+        <ProjectsRail>
+          {allProjects.map((project, i) => (
+            <div
+              key={project.slug}
+              className="w-[80vw] shrink-0 snap-start md:w-[calc((100%-2.5rem)/3)]"
+            >
+              <ProjectCard project={project} overlay priority={i === 0} />
+            </div>
+          ))}
+        </ProjectsRail>
       </section>
 
-      {/* Notebook — 2 x 3 grid, last cell is Read all */}
+      {/* Notebook — compact 3-up grid, last cell is Read all */}
       <section className="reveal reveal-2 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <h2 className="font-display text-2xl font-semibold tracking-tight">
@@ -116,7 +98,7 @@ export default function Home() {
             Sharing my thoughts and knowledge about product &amp; marketing
           </p>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {posts.slice(0, 5).map((post) => (
             <Link
               key={post.slug}
