@@ -5,6 +5,7 @@ import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteNav } from "@/components/site-nav";
+import { MobileTabBar } from "@/components/mobile-tabbar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -36,9 +37,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="flex min-h-screen flex-col overflow-x-clip">
             <SiteNav />
-            <main className="flex-1 px-6 pb-16 pt-20 md:px-12 md:pb-20">
+            <main className="flex-1 px-6 pb-28 pt-20 md:px-12 md:pb-20">
               <div className="mx-auto max-w-3xl">{children}</div>
             </main>
+            <MobileTabBar />
           </div>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-FZREW91PD2" />
