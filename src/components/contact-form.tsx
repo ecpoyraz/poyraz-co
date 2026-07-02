@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -28,6 +29,7 @@ export function ContactForm() {
         throw new Error(json.error || "Something went wrong.");
       }
       setStatus("success");
+      sendGAEvent("event", "contact_message_sent", { method: "contact_form" });
       form.reset();
     } catch (err) {
       setStatus("error");
