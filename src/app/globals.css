@@ -58,6 +58,23 @@
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 55s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -118,6 +135,22 @@
 
 .animate-fade-in {
   animation: fade-in 0.2s ease both;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-pop {
+  transform-origin: top left;
+  animation: pop 0.16s cubic-bezier(0.21, 0.61, 0.35, 1) both;
 }
 
 .prose img {

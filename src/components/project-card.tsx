@@ -6,21 +6,25 @@ export function ProjectCard({
   project,
   priority = false,
   overlay = false,
+  decorative = false,
 }: {
   project: (typeof projects)[number];
   priority?: boolean;
   overlay?: boolean;
+  decorative?: boolean;
 }) {
   if (overlay) {
     return (
       <Link
         href={project.permalink}
+        aria-hidden={decorative || undefined}
+        tabIndex={decorative ? -1 : undefined}
         className="group relative block overflow-hidden rounded-2xl border border-border bg-subtle"
       >
         {project.cover && (
           <Image
             src={project.cover}
-            alt={project.title}
+            alt={decorative ? "" : project.title}
             width={1600}
             height={1000}
             quality={90}

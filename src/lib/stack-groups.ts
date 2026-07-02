@@ -23,11 +23,11 @@ export const GROUPS: StackGroup[] = [
   {
     title: "Design & Creative",
     description: "Making it look and feel right, fast.",
-    slugs: ["figma", "higgsfield"],
+    slugs: ["figma", "fal-ai"],
   },
   {
     title: "Knowledge & Work",
     description: "Where thinking and planning live.",
-    slugs: ["notion", "obsidian", "arc"],
+    slugs: ["notion", "obsidian", "arc", "granola", "wispr-flow"],
   },
 ];

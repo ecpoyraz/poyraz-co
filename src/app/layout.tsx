@@ -4,8 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Sidebar } from "@/components/sidebar";
-import { MobileNav } from "@/components/mobile-nav";
+import { SiteNav } from "@/components/site-nav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -35,14 +34,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <div className="flex min-h-screen flex-col md:flex-row">
-            <aside className="hidden md:block md:w-64 md:shrink-0 md:border-r md:border-border md:bg-card">
-              <div className="sticky top-0 flex h-screen flex-col">
-                <Sidebar />
-              </div>
-            </aside>
-            <MobileNav />
-            <main className="flex-1 px-6 pt-8 pb-28 md:px-12 md:py-10">
+          <div className="flex min-h-screen flex-col overflow-x-clip">
+            <SiteNav />
+            <main className="flex-1 px-6 pb-16 pt-20 md:px-12 md:pb-20">
               <div className="mx-auto max-w-3xl">{children}</div>
             </main>
           </div>
