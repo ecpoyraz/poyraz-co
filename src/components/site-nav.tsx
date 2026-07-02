@@ -36,7 +36,7 @@ export function SiteNav() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="fixed right-5 top-5 z-50 flex size-10 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition hover:bg-subtle md:left-5 md:right-auto"
+        className="fixed right-5 top-5 z-[60] flex size-10 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition hover:bg-subtle md:left-5 md:right-auto"
       >
         {open ? (
           <X className="size-[18px]" />
@@ -61,7 +61,7 @@ export function SiteNav() {
             onClick={(e) => {
               if ((e.target as HTMLElement).closest("a")) setOpen(false);
             }}
-            className="animate-pop fixed right-4 top-[68px] z-50 flex max-h-[calc(100vh-5.5rem)] w-72 max-w-[calc(100vw-2rem)] flex-col overflow-y-auto rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/10 md:left-4 md:right-auto"
+            className="animate-fade-in fixed inset-0 z-50 flex flex-col overflow-y-auto bg-card pt-10 md:inset-auto md:left-4 md:top-[68px] md:max-h-[calc(100vh-5.5rem)] md:w-72 md:max-w-[calc(100vw-2rem)] md:rounded-2xl md:border md:border-border md:pt-0 md:shadow-2xl md:shadow-foreground/10"
           >
             <Sidebar />
           </div>
