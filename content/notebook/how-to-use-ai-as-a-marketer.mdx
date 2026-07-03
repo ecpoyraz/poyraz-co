@@ -1,0 +1,133 @@
+---
+title: How to Use AI as a Marketer
+date: 2026-07-02
+updated: 2026-07-02
+slug: how-to-use-ai-as-a-marketer
+category: Article
+excerpt: A few years ago I used AI to write blog posts and subject lines. That was the smallest possible use of it. Here is how I actually run marketing with AI now, across the whole funnel, from research to shipping.
+tags: [AI, Growth Marketing, Claude, Marketing Workflow, Automation]
+cover: /images/nb-chatgpt-v2.png
+draft: false
+---
+
+In 2024 I wrote a post on this site called "How to Use ChatGPT as a Marketer." It was a long transcript of me asking a chatbot to describe personas, build an AARRR funnel, and write a blog post. It was genuinely useful at the time, and people liked it.
+
+Reading it now is a little embarrassing. Not because the model got worse. Because I was thinking about the whole thing the wrong way. I treated AI like a very fast intern who writes copy. That is the smallest, least interesting thing it can do.
+
+The way I work has changed completely since then. AI is not a tool I open to generate text. It is the layer the rest of my work runs on. So this is the honest, updated version. Not prompts to copy, but how I actually use AI as a marketer today.
+
+<Callout variant="info" title="The short version">
+
+Copy was never the moat. Judgment was. AI made the copy, the reporting, and the plumbing almost free, which means the only thing left worth your time is deciding what matters and knowing a right answer from a plausible one.
+
+</Callout>
+
+## I was using it as a copywriter. That was the mistake.
+
+Go back and look at what everyone did with the first models, myself included. We asked them to write subject lines, ad variants, and blog intros. That was the first thing every model could do and, it turned out, the least valuable. If the whole industry can generate the same email in one prompt, that email is not your edge.
+
+The real unlock was not AI writing marketing. It was AI doing the parts of marketing that were never marketing to begin with. Pulling the funnel. Reconciling two dashboards that disagree. Enriching a lead list. Drafting the weekly narrative. Building the landing page. That work used to eat half my week, and almost none of it was differentiated.
+
+> The tools were never the moat. The judgment about what to look at was the moat. We just paid for the tools, and the hours, because the judgment had nowhere else to run.
+
+Once you stop thinking "AI writes my content" and start thinking "AI runs my plumbing," everything reorganizes.
+
+## How I actually work with it
+
+A few things sit underneath everything else I do.
+
+**Claude is a thinking partner, not a search box.** I do not open it to get an answer and close it. I think out loud with it, argue with it, ask it to attack my own plan. I talk instead of type, because [Wispr Flow](https://wisprflow.ai/) turns voice into text as fast as I can think, and thinking out loud is faster than writing.
+
+**Context is the whole game.** A model with no context guesses, and a confident guess is worse than no answer. So I feed it the real thing: the product, the ICP, past campaigns, what already failed and why. I keep that in a linked, LLM-managed knowledge base in Obsidian, my second brain, so I am not re-explaining my company every morning. Garbage context in, confident garbage out.
+
+**MCP connects it to reality.** The bigger shift is the [Model Context Protocol](https://modelcontextprotocol.io/), which lets the model reach into my actual systems instead of imagining them. Analytics, the CRM, the warehouse, the docs. It stops being a clever text box and becomes an operator that pulls the real number.
+
+```json
+{
+  "mcpServers": {
+    "analytics": {
+      "command": "npx",
+      "args": ["-y", "@example/ga4-mcp"],
+      "env": { "GA4_PROPERTY_ID": "properties/XXXXXXXX" }
+    }
+  }
+}
+```
+
+That one connection is the difference between "write me a plausible report" and "pull last week's activation funnel by channel, flag anything two standard deviations off the eight-week mean, and draft the narrative." One is a text box. The other is doing my job with me.
+
+## Across the funnel, honestly
+
+Here is where AI actually shows up in my week, stage by stage. Notice how little of it is writing copy.
+
+### Research and positioning
+
+I do not ask for three invented personas anymore. That was the 2024 move and it produced generic nonsense. Instead I hand the model the real mess: sales call notes from [Granola](https://granola.ai/), support threads, churn reasons, reviews. It clusters hundreds of messy inputs into patterns I would have taken a week to see. Then I do the part it cannot: decide which pattern is the wedge and which is noise.
+
+### Acquisition
+
+For creative, I use fast generative models like [Fal.ai](https://fal.ai/) to produce ad variants in minutes. The model is a phenomenal first drafter and a terrible final judge. It will give me forty variants. Picking the three that match the brand and the moment is still a human act, and the gap between variant twelve and variant three is where the performance lives.
+
+For outbound, [Apollo](https://www.apollo.io/) gives me the data and the agent does the research and personalization at a volume I could never hit by hand, without sounding like a mail merge. For content and SEO, the model drafts and I own the angle. The angle is the moat. The draft is not.
+
+### Activation and onboarding
+
+I point the agent at the drop-off, not the guesswork. It reads the funnel in Mixpanel and the session recordings in Microsoft Clarity, tells me where users actually quit, and drafts the onboarding change. I have watched real people rage-quit an empty state enough times that fixing the first-run experience became one of the highest-leverage things I do. The agent finds the leak faster than I do.
+
+### Retention and lifecycle
+
+Lifecycle still runs on a real platform, Insider in my case. What changed is that the agent drafts the sequences, the segment logic, and the win-back flows in minutes, and I edit for judgment and tone. The words got cheap. Deciding who gets which message, and when, did not.
+
+### Measurement
+
+This is where it changed the most. The Monday reporting ritual, open the console, export to a sheet, make the chart, write the story, used to be four steps of plumbing and one step of thinking. Now an agent over MCP does the four and hands me the one. But the rule is absolute: verify against a second source. A model will hallucinate a clean number off a broken pipeline without blinking, and a wrong number in a board deck is your problem, not the tool's.
+
+### Automation
+
+The workflows I do not want to babysit live in [n8n](https://n8n.io/). Enrichment, lead scoring, alerting when a metric breaks, routing. These are the agent workflows that keep running without me, which is the point. Automation you have to watch is just a slower way of doing it yourself.
+
+### Building
+
+This is the one most marketers still sleep on. With [Claude Code](https://claude.com/claude-code) I ship landing pages, tracking, and small internal tools by directing an agent instead of waiting in an engineering queue. A marketer who can build is a different animal now. If you want the longer version of this, I wrote about [vibe coding for marketers](/notebook/vibe-coding-for-marketers) separately.
+
+## The before and after
+
+I do not believe in charts that pretend everything got replaced. Here is what genuinely moved.
+
+| The job | 2024 me | How I run it now | Verdict |
+| --- | --- | --- | --- |
+| Personas and positioning | Asked the model to invent them | Model clusters real inputs, I pick the wedge | **Compressed** |
+| Ad and email copy | Generated one at a time | Generated in bulk, human-selected | **Compressed** |
+| Weekly reporting | Built by hand across tools | Agent pulls and drafts, I verify | **Replaced** |
+| Outbound research | Manual, low volume | Agent researches and personalizes at scale | **Replaced** |
+| Landing pages and tools | Waited on the eng queue | Built by directing an agent | **Replaced** |
+| Positioning and taste | Me | Still me | **Untouched** |
+
+The pattern is not "AI replaced marketing." Retrieval and synthesis collapsed in cost. Judgment did not. Everything the model made cheap was the part that was never the moat.
+
+## The principles that keep me out of trouble
+
+I learned most of these the expensive way.
+
+- **Connect read, gate write.** An agent that can read your ad spend is a research assistant. An agent that can change your ad spend is a liability until you trust it deeply.
+- **Verify against a second source.** The cross-check is not a nicety, it is the entire discipline.
+- **Own the output.** If the agent drafts a wrong narrative and you ship it, that is your wrong narrative. The byline does not transfer to the tool.
+- **Feed context, do not expect magic.** The quality of what you get back is a mirror of what you put in.
+
+## What it still cannot do
+
+When everyone has the same agents connected to the same data, the analysis stops being the edge. Two teams with identical setups will pull the same funnel and surface the same anomalies. The work that used to take a week and felt like progress is now a sentence.
+
+So the edge moves up, to the two things that were always hardest and always undervalued. Asking the question worth answering, because the model will answer anything and has no opinion about which question matters. And having the taste to know which answer is right and which is confident nonsense. On top of that sits the work no model will ever do for you: walking into a room and convincing a company to actually ship the risky thing.
+
+That was always the real job. There is just more of it now.
+
+---
+
+<Callout variant="tip" title="The takeaway">
+
+Stop asking AI to write your copy. That is the demo, not the job.
+
+Let it run the plumbing: the reporting, the enrichment, the first drafts, the builds. Then spend every hour it gives you back on the part no model can touch, deciding what matters and having the taste to tell a right answer from a plausible one. The marketers who win the next few years are not the ones with the best prompts. They are the ones asking the sharper question and trusting the right answer.
+
+</Callout>

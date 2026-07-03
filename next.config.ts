@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 90],
   },
+  async redirects() {
+    return [
+      {
+        source: "/notebook/how-to-use-chatgpt-as-a-marketer",
+        destination: "/notebook/how-to-use-ai-as-a-marketer",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
