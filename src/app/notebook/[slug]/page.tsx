@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { notebook } from "#content";
+import { getPublishedPosts } from "@/lib/posts";
 import { MDXContent } from "@/components/mdx-content";
 import { Footer } from "@/components/footer";
 
@@ -42,6 +43,21 @@ export default async function PostPage({
   const { slug } = await params;
   const post = notebook.find((p) => p.slug === slug);
   if (!post) notFound();
+
+  // Other articles to read next: prefer ones sharing tags, then most recent.
+  const readNext = getPublishedPosts()
+    .filter((p) => p.slug !== post.slug)
+    .map((p) => ({
+      p,
+      shared: p.tags.filter((t) => post.tags.includes(t)).length,
+    }))
+    .sort(
+      (a, b) =>
+        b.shared - a.shared ||
+        new Date(b.p.date).getTime() - new Date(a.p.date).getTime(),
+    )
+    .slice(0, 3)
+    .map((x) => x.p);
 
   const siteUrl = "https://poyraz.co";
   const url = `${siteUrl}${post.permalink}`;
@@ -146,6 +162,49 @@ export default async function PostPage({
       <article className="prose prose-neutral max-w-none dark:prose-invert">
         <MDXContent code={post.code} />
       </article>
+
+      {readNext.length > 0 && (
+        <section className="border-t border-border pt-8">
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="font-display text-xl font-semibold tracking-tight">
+              Read next
+            </h2>
+            <Link
+              href="/notebook"
+              className="text-sm font-medium text-muted transition hover:text-accent"
+            >
+              All articles
+            </Link>
+          </div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+            {readNext.map((p) => (
+              <Link
+                key={p.slug}
+                href={p.permalink}
+                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition hover:border-accent/40"
+              >
+                {p.cover && (
+                  <div className="overflow-hidden border-b border-border bg-subtle">
+                    <Image
+                      src={p.cover}
+                      alt=""
+                      width={640}
+                      height={360}
+                      className="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                )}
+                <div className="p-4">
+                  <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
+                    {p.title}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       <Footer />
     </div>
   );
