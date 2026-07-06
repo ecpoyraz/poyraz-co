@@ -64,6 +64,13 @@ export function ContactForm() {
           className="rounded-md border border-border bg-background px-3 py-2.5 text-sm"
         />
       </div>
+      <input
+        type="url"
+        name="website"
+        placeholder="Company website"
+        aria-label="Company website"
+        className="mt-3 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+      />
       <textarea
         name="message"
         required

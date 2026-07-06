@@ -2,7 +2,12 @@ import { Resend } from "resend";
 import { FROM_EMAIL, TO_EMAIL } from "@/lib/resend";
 
 export async function POST(request: Request) {
-  let body: { name?: string; email?: string; message?: string };
+  let body: {
+    name?: string;
+    email?: string;
+    website?: string;
+    message?: string;
+  };
   try {
     body = await request.json();
   } catch {
@@ -11,6 +16,7 @@ export async function POST(request: Request) {
 
   const name = body.name?.trim();
   const email = body.email?.trim();
+  const website = body.website?.trim();
   const message = body.message?.trim();
 
   if (!email || !message) {
@@ -33,7 +39,7 @@ export async function POST(request: Request) {
     to: TO_EMAIL,
     replyTo: email,
     subject: `New message from ${name || email} via poyraz.co`,
-    text: `Name: ${name || "-"}\nEmail: ${email}\n\n${message}`,
+    text: `Name: ${name || "-"}\nEmail: ${email}\nWebsite: ${website || "-"}\n\n${message}`,
   });
 
   if (error) {
