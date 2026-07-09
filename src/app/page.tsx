@@ -11,6 +11,7 @@ import { ProjectsRail } from "@/components/projects-rail";
 import { GrowthShowcase } from "@/components/growth-showcase";
 import { StackCard } from "@/components/stack-card";
 import { ArrowUpRight } from "lucide-react";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   description:
@@ -39,9 +40,9 @@ export default function Home() {
     "@graph": [
       {
         "@type": "Person",
-        "@id": "https://poyraz.co/#person",
+        "@id": `${SITE_URL}/#person`,
         name: "Eyüp Can Poyraz",
-        url: "https://poyraz.co",
+        url: SITE_URL,
         jobTitle: "Product and Growth Marketer",
         sameAs: [
           "https://x.com/eyuppoyraz",
@@ -50,10 +51,10 @@ export default function Home() {
       },
       {
         "@type": "WebSite",
-        "@id": "https://poyraz.co/#website",
-        url: "https://poyraz.co",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
         name: "Eyüp Can Poyraz",
-        publisher: { "@id": "https://poyraz.co/#person" },
+        publisher: { "@id": `${SITE_URL}/#person` },
       },
     ],
   };

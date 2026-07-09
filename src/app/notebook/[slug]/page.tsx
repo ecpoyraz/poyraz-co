@@ -7,6 +7,7 @@ import { notebook } from "#content";
 import { getPublishedPosts } from "@/lib/posts";
 import { MDXContent } from "@/components/mdx-content";
 import { Footer } from "@/components/footer";
+import { SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return notebook.map((post) => ({ slug: post.slug }));
@@ -59,11 +60,14 @@ export default async function PostPage({
     .slice(0, 3)
     .map((x) => x.p);
 
-  const siteUrl = "https://poyraz.co";
+  const siteUrl = SITE_URL;
   const url = `${siteUrl}${post.permalink}`;
+  // Same entity as the sitewide Person node on the homepage (@id reference
+  // keeps author identity consolidated for search engines and AI crawlers).
   const author = {
     "@type": "Person",
-    name: "Eyup Poyraz",
+    "@id": `${siteUrl}/#person`,
+    name: "Eyüp Can Poyraz",
     url: `${siteUrl}/about`,
   };
   const articleSchema = {
