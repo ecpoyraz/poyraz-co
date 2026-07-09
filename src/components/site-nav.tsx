@@ -36,7 +36,7 @@ export function SiteNav() {
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="fixed right-5 top-5 z-[60] flex size-10 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition hover:bg-subtle md:left-5 md:right-auto"
+        className="fixed right-5 top-5 z-[60] flex size-12 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground shadow-sm backdrop-blur transition hover:bg-subtle md:left-5 md:right-auto"
       >
         {open ? (
           <X className="size-[18px]" />

@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
+import Image from "next/image";
 import { Info, Lightbulb, TriangleAlert } from "lucide-react";
 
 const variantIcon = {
@@ -40,7 +41,27 @@ function TableWrap(props: ComponentPropsWithoutRef<"table">) {
   );
 }
 
+// Markdown images (`![]()`) compile to a plain <img> with no width/height,
+// so `fill` + a sized wrapper is used instead of intrinsic dimensions.
+// `span` (not `div`) keeps this a valid child when remark wraps a
+// standalone image in a <p>.
+function MDXImage({ src, alt }: ComponentPropsWithoutRef<"img">) {
+  if (!src || typeof src !== "string") return null;
+  return (
+    <span className="relative my-6 block aspect-[16/10] w-full overflow-hidden rounded-xl border border-border bg-subtle">
+      <Image
+        src={src}
+        alt={alt ?? ""}
+        fill
+        sizes="(max-width: 768px) 100vw, 720px"
+        className="object-cover"
+      />
+    </span>
+  );
+}
+
 export const mdxComponents = {
   Callout,
   table: TableWrap,
+  img: MDXImage,
 };

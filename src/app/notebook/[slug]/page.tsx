@@ -126,7 +126,7 @@ export default async function PostPage({
           <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
             {post.title}
           </h1>
-          <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
+          <p className="max-w-2xl text-base leading-relaxed text-muted">
             {post.excerpt}
           </p>
           <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-muted">
