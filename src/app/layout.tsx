@@ -6,12 +6,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteNav } from "@/components/site-nav";
 import { MobileTabBar } from "@/components/mobile-tabbar";
-import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL("https://poyraz.co"),
   title: {
     default: "Eyüp Can Poyraz | Product and Growth Marketer",
     template: "%s | Eyüp Can Poyraz",
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Eyüp Can Poyraz",
     locale: "en_US",
-    url: SITE_URL,
+    url: "https://poyraz.co",
   },
   twitter: { card: "summary_large_image", creator: "@eyuppoyraz" },
 };
