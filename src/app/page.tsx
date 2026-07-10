@@ -67,12 +67,8 @@ export default function Home() {
       />
       <GrowthShowcase />
 
-      {/* Projects — draggable rail with prev/next arrows.
-          No .reveal fade-in here: this section holds the LCP image, and
-          fade-up starts at opacity:0 (animation-fill-mode: both), which
-          delays when Chrome counts the element as painted under CPU
-          throttling. Lower sections keep the staggered entrance. */}
-      <section className="flex flex-col gap-6">
+      {/* Projects — draggable rail with prev/next arrows */}
+      <section className="reveal reveal-1 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <h2 className="font-display text-2xl font-semibold tracking-tight">
             Projects

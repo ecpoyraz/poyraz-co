@@ -201,7 +201,7 @@ export function GrowthShowcase() {
         <div className="flex items-center gap-2.5">
           <Link
             href="/about"
-            className="rounded-md border border-border bg-subtle px-4 py-3 text-sm font-medium text-foreground transition hover:bg-background"
+            className="rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
           >
             About
           </Link>

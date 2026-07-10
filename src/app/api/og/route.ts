@@ -1,9 +1,5 @@
 // Resolves and proxies the Open Graph image for a given URL so bookmarks can
 // render their cover straight from the source, with no stored image files.
-// Source OG images are re-encoded to a capped WebP before serving since
-// they're rendered as a plain <img> (no next/image optimization applies).
-
-import sharp from "sharp";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0 Safari/537.36";
@@ -76,28 +72,13 @@ export async function GET(request: Request) {
     const type = img.headers.get("content-type") ?? "";
     if (!type.startsWith("image/")) return placeholder(target);
 
-    const cacheControl =
-      "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800";
-    const original = Buffer.from(await img.arrayBuffer());
-
-    try {
-      const resized = await sharp(original)
-        .resize({ width: 640, withoutEnlargement: true })
-        .webp({ quality: 75 })
-        .toBuffer();
-      return new Response(new Uint8Array(resized), {
-        headers: {
-          "content-type": "image/webp",
-          "cache-control": cacheControl,
-        },
-      });
-    } catch {
-      // Source isn't a format sharp can decode (e.g. an unsupported raster
-      // type); serve it as-is rather than dropping the bookmark cover.
-      return new Response(new Uint8Array(original), {
-        headers: { "content-type": type, "cache-control": cacheControl },
-      });
-    }
+    return new Response(await img.arrayBuffer(), {
+      headers: {
+        "content-type": type,
+        "cache-control":
+          "public, max-age=86400, s-maxage=2592000, stale-while-revalidate=604800",
+      },
+    });
   } catch {
     return placeholder(target);
   }
