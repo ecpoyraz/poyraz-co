@@ -83,7 +83,7 @@ export default async function ProjectPage({
         )}
       </header>
 
-      <article className="prose prose-neutral max-w-none dark:prose-invert">
+      <article className="prose prose-neutral max-w-none">
         <MDXContent code={project.code} />
       </article>
 

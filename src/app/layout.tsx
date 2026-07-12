@@ -3,7 +3,6 @@ import { Inter, Fragment_Mono, Host_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Footer } from "@/components/footer";
@@ -44,20 +43,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={`${inter.variable} ${hostGrotesk.variable} ${fragmentMono.variable}`}
     >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <div className="flex min-h-screen flex-col overflow-x-clip">
-            <SmoothScroll />
-            <SiteHeader />
-            <main className="flex-1 px-5 pb-24 pt-10 md:px-10">
-              <div className="mx-auto max-w-6xl">{children}</div>
-            </main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+        <div className="flex min-h-screen flex-col overflow-x-clip">
+          <SmoothScroll />
+          <SiteHeader />
+          <main className="flex-1 px-5 pb-24 pt-10 md:px-10">
+            <div className="mx-auto max-w-6xl">{children}</div>
+          </main>
+          <Footer />
+        </div>
         <GoogleAnalytics gaId="G-FZREW91PD2" />
         <ThirdPartyScripts />
       </body>

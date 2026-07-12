@@ -157,7 +157,7 @@ export default async function PostPage({
           />
         )}
       </header>
-      <article className="prose prose-neutral max-w-none dark:prose-invert">
+      <article className="prose prose-neutral max-w-none">
         <MDXContent code={post.code} />
       </article>
 

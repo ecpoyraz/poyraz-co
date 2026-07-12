@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 /* Core palette: the revenue-panel burgundy anchors every branded surface. */
 :root {
   --background: #fdfbf8;
@@ -21,25 +19,6 @@
   --tag-purple: #ae11de;
   --tag-green: #375f21;
   --tag-blue: #104ede;
-}
-
-.dark {
-  --background: #0a0a09;
-  --foreground: #f4f3ee;
-  --muted: #a3a29a;
-  --subtle: #232320;
-  --border: #262622;
-  --card: #161613;
-  --accent: #d9776a;
-  --brand: #b94b40;
-  --brand-deep: #190707;
-  --brand-warm: #d06b5f;
-  --brand-light: #e5a79f;
-  --brand-soft: #301817;
-  --tag-orange: #ff7a33;
-  --tag-purple: #c95bee;
-  --tag-green: #8fbf6a;
-  --tag-blue: #6a8dff;
 }
 
 @theme inline {
