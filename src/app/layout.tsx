@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fragment_Mono, Host_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThirdPartyScripts } from "@/components/third-party-scripts";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SiteNav } from "@/components/site-nav";
-import { MobileTabBar } from "@/components/mobile-tabbar";
+import { SiteHeader } from "@/components/site-header";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { Footer } from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const hostGrotesk = Host_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-host-grotesk",
+});
+const fragmentMono = Fragment_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-fragment-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://poyraz.co"),
@@ -32,15 +42,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${hostGrotesk.variable} ${fragmentMono.variable}`}
+    >
       <body>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <div className="flex min-h-screen flex-col overflow-x-clip">
-            <SiteNav />
-            <main className="flex-1 px-6 pb-28 pt-20 md:px-12 md:pb-20">
-              <div className="mx-auto max-w-3xl">{children}</div>
+            <SmoothScroll />
+            <SiteHeader />
+            <main className="flex-1 px-5 pb-24 pt-10 md:px-10">
+              <div className="mx-auto max-w-6xl">{children}</div>
             </main>
-            <MobileTabBar />
+            <Footer />
           </div>
         </ThemeProvider>
         <GoogleAnalytics gaId="G-FZREW91PD2" />

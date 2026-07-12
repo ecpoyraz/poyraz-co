@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { stack } from "#content";
-import { StackCard } from "@/components/stack-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
-import { Footer } from "@/components/footer";
 import { GROUPS } from "@/lib/stack-groups";
+import { IndexList, IndexRow } from "@/components/index-list";
+import { TagPill, toneFor } from "@/components/tag-pill";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Stack",
@@ -17,46 +18,50 @@ export default function StackPage() {
   const bySlug = (slug: string) => tools.find((t) => t.slug === slug);
 
   return (
-    <div className="flex flex-col gap-8">
-      <header className="flex flex-col gap-3">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          Stack
-        </h1>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
+    <div className="flex flex-col gap-16 md:gap-20">
+      <Reveal as="header" className="pt-6 md:pt-14">
+        <p className="label-mono mb-4 text-muted">Tools</p>
+        <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
           Software I use to craft something valuable.
-        </p>
-      </header>
+        </h1>
+      </Reveal>
 
-      {GROUPS.map((group) => {
-        const groupTools = group.slugs
-          .map(bySlug)
-          .filter((t): t is (typeof tools)[number] => Boolean(t));
-        if (groupTools.length === 0) return null;
-        return (
-          <section key={group.title} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1">
-              <h2 className="font-display text-lg font-semibold tracking-tight">
-                {group.title}
-              </h2>
-              <p className="text-sm text-muted">{group.description}</p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {groupTools.map((tool) => (
-                <StackCard key={tool.slug} tool={tool} />
-              ))}
-            </div>
-          </section>
-        );
-      })}
+      <div className="flex flex-col gap-14">
+        {GROUPS.map((group) => {
+          const groupTools = group.slugs
+            .map(bySlug)
+            .filter((t): t is (typeof tools)[number] => Boolean(t));
+          if (groupTools.length === 0) return null;
+          return (
+            <Reveal as="section" key={group.title}>
+              <p className="label-mono mb-2 text-muted">{group.title}</p>
+              <p className="mb-6 text-sm text-muted">{group.description}</p>
+              <IndexList>
+                {groupTools.map((tool) => (
+                  <IndexRow
+                    key={tool.slug}
+                    href={tool.url}
+                    title={tool.name}
+                    external
+                    tags={
+                      <TagPill tone={toneFor(tool.category)}>
+                        {tool.category}
+                      </TagPill>
+                    }
+                  />
+                ))}
+              </IndexList>
+            </Reveal>
+          );
+        })}
+      </div>
 
-      <div className="rounded-2xl border border-border bg-card p-6 sm:p-7">
+      <Reveal className="rounded-xl bg-card p-8 md:p-10">
         <NewsletterSignup
           title="Never miss a new tool"
           subtitle="Get notified as soon as I add new tools to my stack."
         />
-      </div>
-
-      <Footer />
+      </Reveal>
     </div>
   );
 }

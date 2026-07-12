@@ -34,7 +34,7 @@ export function NewsletterSignup({
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex flex-col gap-1">
-        <h3 className="font-display text-base font-semibold tracking-tight">
+        <h3 className="font-display text-lg font-medium tracking-tight">
           {title}
         </h3>
         <p className="text-sm text-muted">{subtitle}</p>
@@ -50,12 +50,12 @@ export function NewsletterSignup({
               required
               placeholder="Your Email"
               aria-label="Email address"
-              className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm sm:w-56"
+              className="w-full rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground sm:w-56"
             />
             <button
               type="submit"
               disabled={status === "loading"}
-              className="shrink-0 rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:opacity-90 disabled:opacity-60"
+              className="shrink-0 rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:opacity-85 disabled:opacity-60"
             >
               {status === "loading" ? "..." : "Submit"}
             </button>

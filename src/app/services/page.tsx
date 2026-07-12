@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/footer";
 import { ServiceCard } from "@/components/service-card";
 import { SERVICES } from "@/lib/services";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -13,25 +13,22 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="flex flex-col gap-10">
-      <header className="flex flex-col gap-3">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          Services{" "}
-          <span className="font-medium text-muted">
-            Let&apos;s Build Momentum
-          </span>
+    <div className="flex flex-col gap-16 md:gap-20">
+      <Reveal as="header" className="pt-6 md:pt-14">
+        <p className="label-mono mb-4 text-muted">Services</p>
+        <h1 className="max-w-3xl font-display text-4xl font-normal leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
+          Let&apos;s build momentum.
         </h1>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
           I help companies build growth momentum and scale their product, from
           strategy to hands-on execution.
         </p>
-      </header>
-      <div className="grid gap-4 sm:grid-cols-3">
+      </Reveal>
+      <Reveal className="grid gap-4 sm:grid-cols-3">
         {SERVICES.map((service) => (
           <ServiceCard key={service.title} service={service} />
         ))}
-      </div>
-      <Footer />
+      </Reveal>
     </div>
   );
 }

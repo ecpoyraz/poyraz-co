@@ -40,7 +40,7 @@ function placeholder(target: string): Response {
     host = new URL(target).hostname.replace(/^www\./, "");
   } catch {}
   const letter = (host[0] ?? "?").toUpperCase();
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eaf0fb"/><stop offset="1" stop-color="#d9e2f4"/></linearGradient></defs><rect width="640" height="360" fill="url(#g)"/><text x="320" y="215" font-family="Inter, system-ui, sans-serif" font-size="140" font-weight="700" fill="#2563eb" text-anchor="middle">${letter}</text></svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f6f3"/><stop offset="1" stop-color="#edede8"/></linearGradient></defs><rect width="640" height="360" fill="url(#g)"/><text x="320" y="215" font-family="Inter, system-ui, sans-serif" font-size="140" font-weight="700" fill="#de5511" text-anchor="middle">${letter}</text></svg>`;
   return new Response(svg, {
     headers: {
       "content-type": "image/svg+xml",

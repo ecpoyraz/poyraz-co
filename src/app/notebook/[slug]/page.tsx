@@ -6,7 +6,8 @@ import { notFound } from "next/navigation";
 import { notebook } from "#content";
 import { getPublishedPosts } from "@/lib/posts";
 import { MDXContent } from "@/components/mdx-content";
-import { Footer } from "@/components/footer";
+import { IndexList, IndexRow } from "@/components/index-list";
+import { TagPill, toneFor } from "@/components/tag-pill";
 
 export function generateStaticParams() {
   return notebook.map((post) => ({ slug: post.slug }));
@@ -98,7 +99,7 @@ export default async function PostPage({
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="mx-auto flex w-full max-w-3xl flex-col gap-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -115,17 +116,17 @@ export default async function PostPage({
           <ArrowLeft className="size-4" />
           Notebook
         </Link>
-        <div className="flex flex-col gap-3">
-          <span className="text-xs font-medium uppercase tracking-wider text-accent">
-            {post.category}
-          </span>
-          <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className="flex flex-col gap-4">
+          <div>
+            <TagPill tone={toneFor(post.category)}>{post.category}</TagPill>
+          </div>
+          <h1 className="font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl">
             {post.title}
           </h1>
           <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
             {post.excerpt}
           </p>
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-muted">
+          <div className="label-mono flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
             <time dateTime={post.date}>
               {new Date(post.date).toLocaleDateString("en-US", {
                 year: "numeric",
@@ -139,11 +140,8 @@ export default async function PostPage({
           {post.tags.length > 0 && (
             <ul className="flex flex-wrap gap-2 pt-1">
               {post.tags.map((tag) => (
-                <li
-                  key={tag}
-                  className="rounded-full border border-border bg-subtle px-2.5 py-0.5 text-xs text-muted"
-                >
-                  {tag}
+                <li key={tag}>
+                  <TagPill>{tag}</TagPill>
                 </li>
               ))}
             </ul>
@@ -155,7 +153,7 @@ export default async function PostPage({
             alt={post.title}
             width={1280}
             height={720}
-            className="w-full rounded-2xl border border-border"
+            className="w-full rounded-xl"
           />
         )}
       </header>
@@ -164,48 +162,31 @@ export default async function PostPage({
       </article>
 
       {readNext.length > 0 && (
-        <section className="border-t border-border pt-8">
-          <div className="flex items-baseline justify-between gap-4">
-            <h2 className="font-display text-xl font-semibold tracking-tight">
+        <section className="pt-4">
+          <div className="mb-6 flex items-baseline justify-between gap-4">
+            <h2 className="font-display text-2xl font-semibold tracking-tight">
               Read next
             </h2>
             <Link
               href="/notebook"
-              className="text-sm font-medium text-muted transition hover:text-accent"
+              className="text-sm font-medium text-muted transition hover:text-foreground"
             >
               All articles
             </Link>
           </div>
-          <div className="mt-5 grid gap-4 sm:grid-cols-3">
+          <IndexList>
             {readNext.map((p) => (
-              <Link
+              <IndexRow
                 key={p.slug}
                 href={p.permalink}
-                className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition hover:border-accent/40"
-              >
-                {p.cover && (
-                  <div className="overflow-hidden border-b border-border bg-subtle">
-                    <Image
-                      src={p.cover}
-                      alt=""
-                      width={640}
-                      height={360}
-                      className="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                )}
-                <div className="p-4">
-                  <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition group-hover:text-accent">
-                    {p.title}
-                  </span>
-                </div>
-              </Link>
+                title={p.title}
+                tags={<TagPill tone={toneFor(p.category)}>{p.category}</TagPill>}
+              />
             ))}
-          </div>
+          </IndexList>
         </section>
       )}
 
-      <Footer />
     </div>
   );
 }

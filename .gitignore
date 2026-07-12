@@ -47,3 +47,8 @@ next-env.d.ts
 
 # velite
 /.velite
+
+# local tooling
+/.claude/
+/.playwright-cli/
+/output/

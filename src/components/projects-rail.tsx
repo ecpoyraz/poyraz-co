@@ -10,6 +10,7 @@ export function ProjectsRail({ children }: { children: React.ReactNode }) {
   const [atEnd, setAtEnd] = useState(false);
   const drag = useRef({ active: false, startX: 0, startScroll: 0, moved: 0 });
   const hovering = useRef(false);
+  const visible = useRef(false);
 
   const update = useCallback(() => {
     const el = ref.current;
@@ -44,16 +45,34 @@ export function ProjectsRail({ children }: { children: React.ReactNode }) {
   // Gentle auto-advance; pauses on hover/drag/hidden tab, off for reduced motion.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rail = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible.current = entry.isIntersecting;
+      },
+      { threshold: 0.25 },
+    );
+    if (rail) observer.observe(rail);
+
     const id = setInterval(() => {
       const el = ref.current;
-      if (!el || hovering.current || drag.current.active || document.hidden)
+      if (
+        !el ||
+        !visible.current ||
+        hovering.current ||
+        drag.current.active ||
+        document.hidden
+      )
         return;
       const max = el.scrollWidth - el.clientWidth;
       if (el.scrollLeft >= max - 4)
         el.scrollTo({ left: 0, behavior: "smooth" });
       else el.scrollBy({ left: cardStep(), behavior: "smooth" });
-    }, 2000);
-    return () => clearInterval(id);
+    }, 5000);
+    return () => {
+      clearInterval(id);
+      observer.disconnect();
+    };
   }, []);
 
   // Drag to scroll (mouse / touch via pointer events).
@@ -119,7 +138,7 @@ export function ProjectsRail({ children }: { children: React.ReactNode }) {
             onClick={() => step(-1)}
             aria-label="Previous projects"
             disabled={atStart}
-            className="flex size-9 items-center justify-center rounded-full border border-border bg-background text-foreground transition hover:bg-subtle disabled:pointer-events-none disabled:opacity-35"
+            className="flex size-9 items-center justify-center rounded-lg border border-border bg-background text-foreground transition hover:bg-subtle disabled:pointer-events-none disabled:opacity-35"
           >
             <ArrowLeft className="size-[18px]" />
           </button>
@@ -128,7 +147,7 @@ export function ProjectsRail({ children }: { children: React.ReactNode }) {
             onClick={() => step(1)}
             aria-label="Next projects"
             disabled={atEnd}
-            className="flex size-9 items-center justify-center rounded-full border border-border bg-background text-foreground transition hover:bg-subtle disabled:pointer-events-none disabled:opacity-35"
+            className="flex size-9 items-center justify-center rounded-lg border border-border bg-background text-foreground transition hover:bg-subtle disabled:pointer-events-none disabled:opacity-35"
           >
             <ArrowRight className="size-[18px]" />
           </button>

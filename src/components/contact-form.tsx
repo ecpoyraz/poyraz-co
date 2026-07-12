@@ -53,7 +53,7 @@ export function ContactForm() {
           name="name"
           placeholder="Name"
           aria-label="Name"
-          className="rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+          className="rounded-xl border border-border bg-background px-4 py-2.5 text-sm"
         />
         <input
           type="email"
@@ -61,7 +61,7 @@ export function ContactForm() {
           required
           placeholder="Email"
           aria-label="Email"
-          className="rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+          className="rounded-xl border border-border bg-background px-4 py-2.5 text-sm"
         />
       </div>
       <input
@@ -69,7 +69,7 @@ export function ContactForm() {
         name="website"
         placeholder="Company website"
         aria-label="Company website"
-        className="mt-3 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+        className="mt-3 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm"
       />
       <textarea
         name="message"
@@ -77,7 +77,7 @@ export function ContactForm() {
         rows={5}
         placeholder="Your message"
         aria-label="Your message"
-        className="mt-3 w-full rounded-md border border-border bg-background px-3 py-2.5 text-sm"
+        className="mt-3 w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm"
       />
       {status === "error" && (
         <p className="mt-2 text-sm text-red-500">{error}</p>
@@ -85,7 +85,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-3 w-full rounded-md bg-foreground px-4 py-2.5 text-sm font-medium text-background transition hover:opacity-90 disabled:opacity-60"
+        className="mt-4 w-full rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition hover:opacity-85 disabled:opacity-60"
       >
         {status === "loading" ? "Sending..." : "Submit"}
       </button>

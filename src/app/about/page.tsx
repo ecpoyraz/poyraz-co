@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { Footer } from "@/components/footer";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { getPublishedPosts } from "@/lib/posts";
+import { IndexList, IndexRow } from "@/components/index-list";
+import { TagPill, toneFor } from "@/components/tag-pill";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "About",
@@ -76,90 +77,70 @@ export default function AboutPage() {
   const posts = getPublishedPosts();
 
   return (
-    <div className="flex flex-col gap-12">
-      <header className="flex flex-col gap-5">
-        <Image
-          src="/images/avatar.png"
-          alt="Eyüp Poyraz"
-          width={80}
-          height={80}
-          className="size-20 rounded-full border border-border"
-        />
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          About me.
+    <div className="flex flex-col gap-16 md:gap-20">
+      <Reveal as="header" className="pt-6 md:pt-14">
+        <p className="label-mono mb-4 text-muted">About</p>
+        <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
+          Engineer and product marketer blending product, marketing and data.
         </h1>
-      </header>
-
-      <div className="prose prose-neutral max-w-none dark:prose-invert">
-        <p>
-          From Aegeans heart, I am Eyup, an engineer and product marketer at
-          tech industry with blending product, marketing and data.
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+          From Aegean&apos;s heart. With over a half decade in the field, I
+          build growth engines for digital products and execute them toward
+          revenue growth with a user centric approach.
         </p>
-        <p>
-          With over a half decade in the field, I masterfully combine building
-          growth engine hubs for digital products and execute them throughout
-          business goals including revenue growth and user centric approaches.
-        </p>
-      </div>
+      </Reveal>
 
-      <Image
-        src="/images/about-banner.jpg"
-        alt="Eyüp Poyraz"
-        width={1280}
-        height={720}
-        className="w-full rounded-2xl border border-border"
-      />
+      <Reveal>
+        <Image
+          src="/images/about-banner.jpg"
+          alt="Eyüp Poyraz"
+          width={1280}
+          height={720}
+          className="w-full rounded-xl"
+        />
+      </Reveal>
 
-      <section className="flex flex-col gap-6">
-        <h2 className="font-display text-2xl font-semibold tracking-tight">
-          Experience
-        </h2>
-        <div className="flex flex-col gap-4">
+      <Reveal as="section">
+        <p className="label-mono mb-8 text-muted">Experience</p>
+        <div className="grid gap-4 sm:grid-cols-2">
           {experience.map((job) => (
-            <div
-              key={job.company}
-              className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5"
-            >
-              <Image
-                src={job.logo}
-                alt={job.company}
-                width={48}
-                height={48}
-                className="size-12 shrink-0 rounded-lg border border-border object-cover"
-              />
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-medium text-muted">
-                  {job.period}
-                </span>
-                <h3 className="text-base font-semibold text-foreground">
-                  {job.role}
-                </h3>
-                <a
-                  href={job.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-fit text-sm font-medium text-accent hover:underline"
-                >
-                  {job.company}
-                </a>
-                <p className="text-sm leading-relaxed text-muted">
-                  {job.description}
-                </p>
+            <div key={job.company} className="rounded-xl bg-card p-7">
+              <div className="mb-5 flex items-center justify-between gap-4">
+                <Image
+                  src={job.logo}
+                  alt={job.company}
+                  width={48}
+                  height={48}
+                  className="size-12 shrink-0 rounded-xl object-cover"
+                />
+                <span className="label-mono text-muted">{job.period}</span>
               </div>
+              <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">
+                {job.role}
+              </h3>
+              <a
+                href={job.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit text-sm font-medium text-accent hover:underline"
+              >
+                {job.company}
+              </a>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                {job.description}
+              </p>
             </div>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="flex flex-col gap-6">
-        <h2 className="font-display text-2xl font-semibold tracking-tight">
-          Podcasts
-        </h2>
+      <Reveal as="section">
+        <p className="label-mono mb-8 text-muted">Podcasts</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {podcasts.map((podcast) => (
             <div
               key={podcast.episodeId}
-              className="overflow-hidden rounded-xl border border-border"
+              className="overflow-hidden rounded-xl"
             >
               <iframe
                 src={`https://open.spotify.com/embed/episode/${podcast.episodeId}?utm_source=generator`}
@@ -174,49 +155,30 @@ export default function AboutPage() {
             </div>
           ))}
         </div>
-      </section>
+      </Reveal>
 
-      <section className="flex flex-col gap-6">
-        <div className="flex flex-col gap-1">
-          <h2 className="font-display text-2xl font-semibold tracking-tight">
-            Notebook
-          </h2>
-          <p className="text-sm text-muted">
-            Sharing my thoughts and knowledge about product &amp; marketing
-          </p>
-        </div>
-        <div className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-          {posts.map((post) => (
-            <Link
+      <Reveal as="section">
+        <p className="label-mono mb-8 text-muted">Notebook</p>
+        <IndexList>
+          {posts.slice(0, 6).map((post) => (
+            <IndexRow
               key={post.permalink}
               href={post.permalink}
-              className="group flex items-center gap-3"
-            >
-              {post.cover && (
-                <Image
-                  src={post.cover}
-                  alt=""
-                  width={44}
-                  height={44}
-                  className="size-11 shrink-0 rounded-lg border border-border object-cover"
-                />
-              )}
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold leading-snug text-foreground transition group-hover:text-accent">
-                  {post.title}
-                </span>
-                <span className="text-xs text-muted">{post.category}</span>
-              </div>
-            </Link>
+              title={post.title}
+              tags={
+                <TagPill tone={toneFor(post.category)}>{post.category}</TagPill>
+              }
+            />
           ))}
+          <IndexRow href="/notebook" title="Read all →" />
+        </IndexList>
+      </Reveal>
+
+      <Reveal className="rounded-xl bg-card p-8 md:p-10">
+        <div className="mx-auto max-w-2xl">
+          <NewsletterSignup />
         </div>
-      </section>
-
-      <div className="border-t border-border pt-8">
-        <NewsletterSignup />
-      </div>
-
-      <Footer />
+      </Reveal>
     </div>
   );
 }

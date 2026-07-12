@@ -3,24 +3,43 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Core palette: the revenue-panel burgundy anchors every branded surface. */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --muted: #5b616e;
-  --subtle: #ededf1;
-  --border: #e7e7eb;
-  --card: #f7f7f9;
-  --accent: #2563eb;
+  --background: #fdfbf8;
+  --foreground: #0c0c0a;
+  --muted: #6b6b63;
+  --subtle: #ece7dd;
+  --border: #e3ddd1;
+  --card: #fffefc;
+  --accent: #801919;
+  --brand: #801919;
+  --brand-deep: #1f0808;
+  --brand-warm: #a33a2f;
+  --brand-light: #d08a80;
+  --brand-soft: #f3e7e3;
+  --tag-orange: #de5511;
+  --tag-purple: #ae11de;
+  --tag-green: #375f21;
+  --tag-blue: #104ede;
 }
 
 .dark {
-  --background: #0a0a0b;
-  --foreground: #f4f4f5;
-  --muted: #9b9ba4;
-  --subtle: #1c1c20;
-  --border: #26262b;
-  --card: #131316;
-  --accent: #6699ff;
+  --background: #0a0a09;
+  --foreground: #f4f3ee;
+  --muted: #a3a29a;
+  --subtle: #232320;
+  --border: #262622;
+  --card: #161613;
+  --accent: #d9776a;
+  --brand: #b94b40;
+  --brand-deep: #190707;
+  --brand-warm: #d06b5f;
+  --brand-light: #e5a79f;
+  --brand-soft: #301817;
+  --tag-orange: #ff7a33;
+  --tag-purple: #c95bee;
+  --tag-green: #8fbf6a;
+  --tag-blue: #6a8dff;
 }
 
 @theme inline {
@@ -31,8 +50,18 @@
   --color-border: var(--border);
   --color-card: var(--card);
   --color-accent: var(--accent);
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-warm: var(--brand-warm);
+  --color-brand-light: var(--brand-light);
+  --color-brand-soft: var(--brand-soft);
+  --color-tag-orange: var(--tag-orange);
+  --color-tag-purple: var(--tag-purple);
+  --color-tag-green: var(--tag-green);
+  --color-tag-blue: var(--tag-blue);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  --font-display: var(--font-host-grotesk);
+  --font-mono: var(--font-fragment-mono);
 }
 
 @layer base {
@@ -63,6 +92,67 @@
   }
 }
 
+/* Uppercase monospace micro-label (section kickers, meta text) */
+.label-mono {
+  font-family: var(--font-fragment-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Scroll-triggered appear. `scripting: enabled` keeps content fully visible
+   for no-JS renders and crawlers; reduced-motion users skip it entirely. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  [data-reveal] {
+    opacity: 0;
+    translate: 0 44px;
+    transition:
+      opacity 0.9s cubic-bezier(0.21, 0.61, 0.35, 1),
+      translate 0.9s cubic-bezier(0.21, 0.61, 0.35, 1);
+  }
+  [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Zero-gravity drift for the hero hands scene: kept intentionally subtle
+   (a few px) so it reads as floating, not motion. */
+@keyframes hero-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(7px, -9px, 0) rotate(0.4deg);
+  }
+  100% {
+    transform: translate3d(-6px, 8px, 0) rotate(-0.35deg);
+  }
+}
+.hero-drift {
+  animation: hero-drift 14s ease-in-out infinite alternate;
+}
+.hero-drift-slow {
+  animation: hero-drift 20s ease-in-out infinite alternate-reverse;
+}
+.hero-drift-fast {
+  animation: hero-drift 9s ease-in-out infinite alternate;
+}
+
+/* Idle pulse for the hero headline before the user starts scrolling. */
+@keyframes blink-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.blink-soft {
+  animation: blink-soft 1.6s ease-in-out infinite;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
@@ -70,15 +160,6 @@
   }
   to {
     opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes slide-in {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
     transform: none;
   }
 }
@@ -92,33 +173,8 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    animation: fade-up 0.6s cubic-bezier(0.21, 0.61, 0.35, 1) both;
-  }
-  .reveal-1 {
-    animation-delay: 0.05s;
-  }
-  .reveal-2 {
-    animation-delay: 0.1s;
-  }
-  .reveal-3 {
-    animation-delay: 0.15s;
-  }
-  .reveal-4 {
-    animation-delay: 0.2s;
-  }
-  .reveal-5 {
-    animation-delay: 0.25s;
-  }
-}
-
 .animate-fade-up {
   animation: fade-up 0.5s cubic-bezier(0.21, 0.61, 0.35, 1) both;
-}
-
-.animate-slide-in {
-  animation: slide-in 0.25s cubic-bezier(0.21, 0.61, 0.35, 1) both;
 }
 
 .animate-fade-in {
@@ -153,8 +209,10 @@
   margin: 1.5rem 0;
 }
 
-.prose :where(h2, h3) {
-  letter-spacing: -0.01em;
+.prose :where(h1, h2, h3, h4) {
+  font-family: var(--font-host-grotesk), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
 }
 
 .prose a {

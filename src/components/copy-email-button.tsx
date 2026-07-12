@@ -23,7 +23,7 @@ export function CopyEmailButton() {
       type="button"
       onClick={handleCopy}
       aria-label={copied ? "E-Mail address copied" : `E-Mail, copy ${EMAIL}`}
-      className="inline-flex items-center gap-2 rounded-md border border-border bg-subtle px-4 py-2 text-sm font-medium text-foreground transition hover:bg-background"
+      className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-foreground transition hover:bg-subtle"
     >
       {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
       {copied ? "Copied" : "E-Mail"}

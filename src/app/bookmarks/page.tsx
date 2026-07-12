@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { bookmarks } from "#content";
 import { published } from "@/lib/collections";
 import { BookmarksFilter } from "@/components/bookmarks-filter";
-import { Footer } from "@/components/footer";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Bookmarks",
@@ -14,17 +14,16 @@ export const metadata: Metadata = {
 export default function BookmarksPage() {
   const items = published([...bookmarks]);
   return (
-    <div className="flex flex-col gap-10">
-      <header className="flex flex-col gap-3">
-        <h1 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          Bookmarks
+    <div className="flex flex-col gap-16 md:gap-20">
+      <Reveal as="header" className="pt-6 md:pt-14">
+        <p className="label-mono mb-4 text-muted">Reading</p>
+        <h1 className="max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
+          Reads and resources I keep coming back to.
         </h1>
-        <p className="max-w-2xl text-[15px] leading-relaxed text-muted">
-          Discover, and stay updated through small content bites.
-        </p>
-      </header>
-      <BookmarksFilter items={items} />
-      <Footer />
+      </Reveal>
+      <Reveal>
+        <BookmarksFilter items={items} />
+      </Reveal>
     </div>
   );
 }

@@ -26,8 +26,8 @@ export function BookmarksFilter({ items }: { items: Bookmark[] }) {
               aria-pressed={isActive}
               className={
                 isActive
-                  ? "rounded-full border border-accent bg-accent/10 px-3.5 py-1.5 text-sm font-medium text-accent transition"
-                  : "rounded-full border border-border bg-subtle px-3.5 py-1.5 text-sm text-muted transition hover:text-foreground"
+                  ? "rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition"
+                  : "rounded-full bg-subtle px-3.5 py-1.5 text-sm text-muted transition hover:text-foreground"
               }
             >
               {category}

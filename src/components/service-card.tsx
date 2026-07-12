@@ -3,7 +3,7 @@ import type { Service } from "@/lib/services";
 
 export function ServiceCard({ service }: { service: Service }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+    <div className="flex h-full flex-col rounded-lg bg-card p-7">
       <h3 className="font-display text-xl font-semibold tracking-tight">
         {service.title}
       </h3>
@@ -16,7 +16,7 @@ export function ServiceCard({ service }: { service: Service }) {
             key={bullet}
             className="flex items-start gap-3 text-sm text-muted"
           >
-            <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-accent" />
+            <span className="mt-[7px] size-1.5 shrink-0 rounded-lg bg-accent" />
             <span>{bullet}</span>
           </li>
         ))}
@@ -24,7 +24,7 @@ export function ServiceCard({ service }: { service: Service }) {
       <div className="mt-auto pt-6">
         <Link
           href={service.href}
-          className="inline-flex w-full items-center justify-center rounded-md border border-border bg-subtle px-4 py-2.5 text-sm font-medium text-foreground transition hover:bg-background"
+          className="inline-flex w-full items-center justify-center rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
         >
           {service.cta}
         </Link>

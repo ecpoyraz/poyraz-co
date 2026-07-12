@@ -11,16 +11,16 @@ export function BookmarkCard({
       href={bookmark.url}
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card"
+      className="group flex flex-col overflow-hidden rounded-xl bg-card"
     >
-      <div className="overflow-hidden border-b border-border bg-subtle">
+      <div className="overflow-hidden bg-subtle">
         {bookmark.image ? (
           <Image
             src={bookmark.image}
             alt={bookmark.title}
             width={600}
             height={340}
-            className="aspect-[16/9] w-full object-cover"
+            className="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           // OG image pulled straight from the source URL, no stored file.
@@ -34,14 +34,14 @@ export function BookmarkCard({
         )}
       </div>
       <div className="flex flex-col gap-2 p-4">
-        <span className="font-display text-[15px] font-semibold leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent">
+        <span className="font-display text-[15px] font-medium leading-snug tracking-tight text-foreground transition-colors group-hover:text-accent">
           {bookmark.title}
         </span>
         <div className="flex flex-wrap gap-1.5">
           {bookmark.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border bg-subtle px-2 py-0.5 text-[10.5px] font-medium uppercase tracking-wider text-muted"
+              className="label-mono rounded-lg bg-subtle px-2.5 py-1 text-muted"
             >
               {tag}
             </span>
