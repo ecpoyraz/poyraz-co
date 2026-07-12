@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowDown } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -27,9 +28,8 @@ export function HeroMrr() {
       const reduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
-      const dy = reduced ? 0 : 14;
 
-      gsap.set(".hm-word", { autoAlpha: 0, y: dy });
+      gsap.set(".hm-word", { autoAlpha: 0.3, y: 0 });
       gsap.set(".hm-card", { autoAlpha: 0, y: reduced ? 0 : 28 });
       gsap.set(".hm-badge", { autoAlpha: 0, y: reduced ? 0 : 6 });
 
@@ -64,6 +64,10 @@ export function HeroMrr() {
 
       // "You believed" steps back to muted as the rest of the sentence arrives
       tl.to(
+        ".hm-scroll-cue",
+        { autoAlpha: 0, y: reduced ? 0 : 8, duration: 0.35, ease: "sine.out" },
+        0,
+      ).to(
         youRef.current,
         { color: "var(--muted)", duration: 0.5, ease: "power2.out" },
         1.0,
@@ -118,7 +122,7 @@ export function HeroMrr() {
 
   return (
     <div ref={root}>
-      <div className="hm-scene relative flex h-screen flex-col items-center justify-center overflow-hidden px-5">
+      <div className="hm-scene relative flex h-[calc(100svh-6.5rem)] flex-col items-center justify-center overflow-hidden px-5">
         {/* the sentence, word by word as you scroll */}
         <h1 className="hero-drift-slow max-w-5xl text-center font-display text-4xl font-normal leading-[1.15] tracking-[-0.02em] sm:text-5xl md:text-6xl lg:text-7xl">
           <span ref={youRef} className="blink-soft text-foreground">
@@ -133,6 +137,16 @@ export function HeroMrr() {
           </span>{" "}
           <span className="hm-word hm-word-3 text-foreground">money</span>
         </h1>
+
+        <div
+          aria-hidden
+          className="hm-scroll-cue absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted sm:bottom-10"
+        >
+          <span className="label-mono whitespace-nowrap">Scroll to continue</span>
+          <span className="scroll-cue-bob flex size-8 items-center justify-center rounded-full border border-border bg-background/80">
+            <ArrowDown className="size-4" strokeWidth={1.5} />
+          </span>
+        </div>
 
         {/* the MRR card, follows as you keep scrolling */}
         <div className="hm-card mt-12">

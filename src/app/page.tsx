@@ -12,6 +12,16 @@ import { AnimationLab } from "@/components/lab/animation-lab";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AnimatedCta } from "@/components/animated-cta";
 
+const PROJECT_DESCRIPTIONS: Record<string, string> = {
+  "clover-finance-crypto-wallet": "A non-custodial crypto wallet and DeFi platform.",
+  "contentrain-headless-cms": "A Git-based headless CMS for developer teams.",
+  "masa-social-event-app": "A social app for discovering nearby events.",
+  "numerspace-calculator-platform": "A bilingual platform for financial and everyday calculators.",
+  "param-fintech-mobile-app": "An embedded finance and digital banking platform.",
+  "peerbie-ai-productivity-tool": "An AI-powered team productivity and collaboration app.",
+  "werk-team-productivity-platform": "An all-in-one team productivity and communication platform.",
+};
+
 export const metadata: Metadata = {
   description:
     "Explore my work as a marketer with a track record of scaling tech products to maximize user value.",
@@ -88,6 +98,7 @@ export default function Home() {
                       href={project.permalink}
                       title={project.title}
                       cover={project.cover}
+                      description={PROJECT_DESCRIPTIONS[project.slug]}
                     />
                   </div>
                 ))}

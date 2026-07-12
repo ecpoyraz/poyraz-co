@@ -132,6 +132,22 @@
   animation: blink-soft 1.6s ease-in-out infinite;
 }
 
+@keyframes scroll-cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue-bob {
+    animation: scroll-cue-bob 1.4s ease-in-out infinite;
+  }
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;
