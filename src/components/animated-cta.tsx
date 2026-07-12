@@ -11,13 +11,9 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const OPENING = ["Don’t", "waste", "your", "time", "and", "money."];
 
-/**
- * A two-beat, scroll-scrubbed closing statement. The first thought builds
- * word by word, recedes, and makes room for the outcome and contact action.
- */
+/** A two-beat, pinned closing statement shown after the orchestrate story. */
 export function AnimatedCta() {
-  const root = useRef<HTMLDivElement>(null);
-  const scene = useRef<HTMLElement>(null);
+  const root = useRef<HTMLElement>(null);
   const panel = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -27,10 +23,7 @@ export function AnimatedCta() {
       ).matches;
       const dy = reduced ? 0 : 18;
 
-      gsap.set(panel.current, {
-        autoAlpha: 0,
-        y: reduced ? 0 : 64,
-      });
+      gsap.set(panel.current, { autoAlpha: 0, y: reduced ? 0 : 64 });
       gsap.set(".cta-word", { autoAlpha: 0, y: dy });
       gsap.set(".cta-second", { autoAlpha: 0, y: dy });
       gsap.set(".cta-action", { autoAlpha: 0, y: reduced ? 0 : 12 });
@@ -43,16 +36,14 @@ export function AnimatedCta() {
           start: "top top",
           end: "+=2800",
           scrub: 1,
-          pin: scene.current,
+          pin: true,
           pinSpacing: true,
+          fastScrollEnd: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      // The card stays completely hidden while approaching the viewport.
-      // Once the scene pins, it appears already centered and rises gently
-      // into its resting position, matching the preceding story sections.
       tl.to(panel.current, {
         autoAlpha: 1,
         y: 0,
@@ -73,15 +64,15 @@ export function AnimatedCta() {
       });
 
       tl.to(
-          ".cta-first",
-          {
-            autoAlpha: 0,
-            y: reduced ? 0 : -16,
-            duration: 0.55,
-            ease: "sine.inOut",
-          },
-          4.35,
-        )
+        ".cta-first",
+        {
+          autoAlpha: 0,
+          y: reduced ? 0 : -16,
+          duration: 0.55,
+          ease: "sine.inOut",
+        },
+        4.35,
+      )
         .to(
           panel.current,
           {
@@ -102,7 +93,7 @@ export function AnimatedCta() {
           6.2,
         )
         .to({}, { duration: 1.1 })
-        .to(scene.current, {
+        .to(root.current, {
           autoAlpha: 0,
           duration: 0.8,
           ease: "sine.inOut",
@@ -113,53 +104,49 @@ export function AnimatedCta() {
   );
 
   return (
-    <div ref={root}>
-      <section
-        ref={scene}
-        className="flex h-screen items-center justify-center"
+    <section
+      ref={root}
+      className="flex h-screen items-center justify-center px-5 md:px-10"
+    >
+      <div
+        ref={panel}
+        className="relative flex h-[72svh] min-h-[32rem] max-h-[52rem] w-full flex-col overflow-hidden rounded-2xl bg-[#0b0b0b] p-7 text-white sm:p-10 md:p-14"
       >
-        <div
-          ref={panel}
-          className="relative flex h-[72svh] min-h-[34rem] max-h-[52rem] w-full flex-col overflow-hidden rounded-2xl bg-[#0b0b0b] p-7 text-white sm:p-10 md:p-14"
-        >
-          <div className="flex items-center gap-4">
-            <span className="label-mono shrink-0 text-white/45">
-              Next move
-            </span>
-            <span className="cta-rule h-px w-full bg-white/35" />
-          </div>
+        <div className="flex items-center gap-4">
+          <span className="label-mono shrink-0 text-white/45">Next move</span>
+          <span className="cta-rule h-px w-full bg-white/35" />
+        </div>
 
-          <div className="my-auto grid items-center">
-            <h2 className="cta-first col-start-1 row-start-1 max-w-5xl font-display text-[clamp(2.45rem,7vw,6.5rem)] font-normal leading-[0.98] tracking-[-0.04em]">
-              {OPENING.map((word, index) => (
-                <span
-                  key={word}
-                  className={`cta-word cta-word-${index} inline-block ${index === 1 ? "text-brand-light" : ""}`}
-                >
-                  {word}&nbsp;
-                </span>
-              ))}
-            </h2>
+        <div className="my-auto grid items-center">
+          <h2 className="cta-first col-start-1 row-start-1 max-w-5xl font-display text-[clamp(2.45rem,7vw,6.5rem)] font-normal leading-[0.98] tracking-[-0.04em]">
+            {OPENING.map((word, index) => (
+              <span
+                key={word}
+                className={`cta-word cta-word-${index} inline-block ${index === 1 ? "text-brand-light" : ""}`}
+              >
+                {word}&nbsp;
+              </span>
+            ))}
+          </h2>
 
-            <div className="cta-second col-start-1 row-start-1 max-w-5xl">
-              <p className="font-display text-[clamp(2.45rem,7vw,6.5rem)] font-normal leading-[0.98] tracking-[-0.04em]">
-                Let&apos;s work together and create{" "}
-                <span className="text-brand-light">real traction.</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="cta-action flex justify-end">
-            <Link
-              href="/contact"
-              className="ml-auto inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-brand transition hover:bg-white/85"
-            >
-              Let&apos;s talk
-              <ArrowUpRight className="size-4" />
-            </Link>
+          <div className="cta-second col-start-1 row-start-1 max-w-5xl">
+            <p className="font-display text-[clamp(2.45rem,7vw,6.5rem)] font-normal leading-[0.98] tracking-[-0.04em]">
+              Let&apos;s work together and create{" "}
+              <span className="text-brand-light">real traction.</span>
+            </p>
           </div>
         </div>
-      </section>
-    </div>
+
+        <div className="cta-action flex justify-end">
+          <Link
+            href="/contact"
+            className="ml-auto inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-brand transition hover:bg-white/85"
+          >
+            Let&apos;s talk
+            <ArrowUpRight className="size-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }

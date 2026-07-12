@@ -49,6 +49,7 @@ export function HeroMrr() {
           start: "top top",
           end: "+=2800",
           scrub: 1,
+          fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
           onUpdate: (self) => {

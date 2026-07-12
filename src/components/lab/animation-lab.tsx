@@ -12,8 +12,10 @@ export function AnimationLab() {
     <div>
       <HeroMrr key="hero" />
       <FeatureCards key="features" />
-      <RevenueArc key="revenue" />
-      <ChaosFunnel key="chaos-funnel" />
+      <div className="story-three-four relative ml-[calc(50%-50vw)] w-screen bg-[#801919]">
+        <RevenueArc key="revenue" />
+        <ChaosFunnel key="chaos-funnel" />
+      </div>
     </div>
   );
 }

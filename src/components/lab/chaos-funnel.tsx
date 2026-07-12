@@ -311,6 +311,10 @@ export function ChaosFunnel() {
         "(prefers-reduced-motion: reduce)",
       ).matches;
       const dy = reduced ? 0 : 10;
+      const sharedBackground = root.current?.closest<HTMLElement>(
+        ".story-three-four",
+      );
+      if (!sharedBackground) return;
 
       gsap.set(".cf-act1 span", { autoAlpha: 0, y: dy });
       gsap.set(".cf-act2 span", { autoAlpha: 0, y: dy });
@@ -354,6 +358,7 @@ export function ChaosFunnel() {
           start: "top top",
           end: "+=8000",
           scrub: 1,
+          fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -432,10 +437,10 @@ export function ChaosFunnel() {
         ease: "sine.inOut",
       })
         .fromTo(
-          ".cf-panel",
-          { autoAlpha: 1 },
+          sharedBackground,
+          { backgroundColor: "#1f0808" },
           {
-            autoAlpha: 0,
+            backgroundColor: "#fdfbf8",
             duration: 0.7,
             ease: "sine.inOut",
             immediateRender: false,
@@ -563,17 +568,12 @@ export function ChaosFunnel() {
   );
 
   return (
-    <div ref={root} className="-mt-[100vh] mb-[70svh] sm:mb-0">
+    <div ref={root} className="-mt-[100svh]">
       {/* the scene breaks out to full width so the black panel of act I can
-          run nearly edge to edge over the beige page; act II plays on the
-          beige page itself, so no palette re-scoping here */}
+          run full-bleed over the beige page — the same surface the revenue
+          panel handed off in red, now black; act II plays on the beige
+          page itself, so no palette re-scoping here */}
       <div className="cf-scene relative ml-[calc(50%-50vw)] flex h-screen w-screen flex-col items-center justify-center overflow-hidden px-5 md:px-10">
-        {/* the big black rectangle of act I — slight gaps to the page
-            edges; it lifts away at the turn to "I orchestrate this" */}
-        <div
-          aria-hidden
-          className="cf-panel absolute inset-x-3 inset-y-3 rounded-2xl bg-brand-deep md:inset-x-5"
-        />
         {/* The badges are the actual moving objects: the pile straightens,
             picks up color and lands on the matching flow coordinates. */}
         {ITEMS.map((chip, i) => (

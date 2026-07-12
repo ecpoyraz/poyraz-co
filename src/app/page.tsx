@@ -64,7 +64,7 @@ export default function Home() {
       {/* The story — pinned, scroll-driven sections */}
       <AnimationLab />
 
-      {/* CTA — pinned, two-beat closing statement */}
+      {/* CTA — directly after the orchestrate story */}
       <AnimatedCta />
 
       {/* Projects — full-bleed rail + index list */}

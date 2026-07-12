@@ -22,11 +22,7 @@ const BAR_COLORS = [
   "bg-brand-warm",
   "bg-brand-light",
 ];
-const STAT_FILLS = [
-  "bg-brand/12",
-  "bg-brand-warm/12",
-  "bg-brand-light/18",
-];
+const STAT_FILLS = ["bg-brand/12", "bg-brand-warm/12", "bg-brand-light/18"];
 
 /**
  * Pinned, scroll-scrubbed second section. Nothing is visible at rest. The
@@ -76,6 +72,7 @@ export function FeatureCards() {
           start: "top top",
           end: "+=6300",
           scrub: 1,
+          fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
         },

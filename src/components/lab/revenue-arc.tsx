@@ -98,7 +98,12 @@ export function RevenueArc() {
       gsap.set(".ra-word", { autoAlpha: 0, y: reduced ? 0 : 8 });
       gsap.set(".ra-marker", { scale: 0, transformOrigin: "50% 50%" });
       gsap.set(".ra-intro-title", { autoAlpha: 0, y: reduced ? 0 : 26 });
-      gsap.set(".ra-panel", { autoAlpha: 1, yPercent: 110 });
+
+      const sharedBackground = root.current?.closest<HTMLElement>(
+        ".story-three-four",
+      );
+      if (!sharedBackground) return;
+      gsap.set(sharedBackground, { backgroundColor: "#801919" });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
@@ -107,19 +112,12 @@ export function RevenueArc() {
           start: "top top",
           end: "+=8800",
           scrub: 1,
+          fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
-
-      // The red panel rises into the viewport as a solid surface. There is
-      // no opacity crossfade: the section arrives physically from below.
-      tl.to(
-        ".ra-panel",
-        { yPercent: 0, duration: 0.8, ease: "power2.inOut" },
-        0.02,
-      );
 
       // Act 0 — the title fades in alone, centered on the screen, slow and
       // soft enough to register as its own beat…
@@ -250,10 +248,11 @@ export function RevenueArc() {
           );
       });
 
-      // outro — a long hold on the finished state first, then only the
-      // content fades while the red panel darkens into the next section's
-      // black. Its geometry stays fixed; the next scene overlaps this last
-      // viewport and takes over at exactly the same screen coordinates.
+      // Outro — hold the completed chart, fade every item out completely,
+      // then leave a short beat on the empty red surface before changing
+      // that same background to black. Keeping these moments sequential
+      // makes the handoff read as one surface changing state, not a second
+      // panel arriving over the first.
       const outroAt = LINE_START + TOTAL + 1.2;
       tl.to(
         contentRef.current,
@@ -261,7 +260,7 @@ export function RevenueArc() {
         outroAt,
       )
         .fromTo(
-          ".ra-panel",
+          sharedBackground,
           { backgroundColor: "#801919" },
           {
             backgroundColor: "#1f0808",
@@ -269,7 +268,7 @@ export function RevenueArc() {
             ease: "sine.inOut",
             immediateRender: false,
           },
-          outroAt + 0.1,
+          outroAt + 1.15,
         )
         .to({}, { duration: 0.3 });
     },
@@ -292,13 +291,6 @@ export function RevenueArc() {
           } as React.CSSProperties
         }
       >
-        {/* the big red rectangle — slight gaps to the page edges, so the
-            beige backdrop keeps framing it */}
-        <div
-          aria-hidden
-          className="ra-panel absolute inset-x-3 inset-y-3 rounded-2xl bg-[#801919] md:inset-x-5"
-        />
-
         <div
           ref={contentRef}
           className="relative z-10 mx-auto w-[min(92vw,90rem)] max-w-none -translate-y-4 sm:translate-y-0"
