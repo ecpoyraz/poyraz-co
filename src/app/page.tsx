@@ -64,8 +64,10 @@ export default function Home() {
       {/* The story — pinned, scroll-driven sections */}
       <AnimationLab />
 
-      {/* CTA — directly after the orchestrate story */}
-      <AnimatedCta />
+      {/* CTA — normal flow, revealed like the projects section */}
+      <ScrollReveal>
+        <AnimatedCta />
+      </ScrollReveal>
 
       {/* Projects — full-bleed rail + index list */}
       <ScrollReveal>
