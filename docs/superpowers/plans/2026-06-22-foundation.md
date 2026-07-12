@@ -267,7 +267,7 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Eyüp Can Poyraz",
+  title: "Eyüp Poyraz",
   description: "Marketer scaling tech products to maximize user value.",
 };
 
@@ -659,7 +659,7 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Eyüp Can Poyraz",
+  title: "Eyüp Poyraz",
   description: "Marketer scaling tech products to maximize user value.",
 };
 

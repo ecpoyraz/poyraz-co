@@ -50,7 +50,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex items-center justify-between border-t border-white/10 pt-6 text-xs text-white/40">
-          <p>© {new Date().getFullYear()} Eyüp Can Poyraz</p>
+          <p>© {new Date().getFullYear()} Eyüp Poyraz</p>
           <div className="flex items-center gap-4">
             <a
               href="https://x.com/eyuppoyraz"

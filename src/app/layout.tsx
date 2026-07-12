@@ -21,14 +21,14 @@ const fragmentMono = Fragment_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://poyraz.co"),
   title: {
-    default: "Eyüp Can Poyraz | Product and Growth Marketer",
-    template: "%s | Eyüp Can Poyraz",
+    default: "Eyüp Poyraz | Product and Growth Marketer",
+    template: "%s | Eyüp Poyraz",
   },
   description:
     "Crafting valuable resources and expressing my thoughts about product and marketing in tech.",
   openGraph: {
     type: "website",
-    siteName: "Eyüp Can Poyraz",
+    siteName: "Eyüp Poyraz",
     locale: "en_US",
     url: "https://poyraz.co",
   },

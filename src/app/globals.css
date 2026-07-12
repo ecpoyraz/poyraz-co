@@ -121,7 +121,7 @@
 @keyframes scroll-cue-bob {
   0%,
   100% {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
   50% {
     transform: translateY(5px);
@@ -130,14 +130,14 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .scroll-cue-bob {
-    animation: scroll-cue-bob 1.4s ease-in-out infinite;
+    animation: scroll-cue-bob 1.8s ease-in-out infinite;
   }
 }
 
 @keyframes home-intro-rise {
   from {
     opacity: 0;
-    transform: translateY(42px);
+    transform: translateY(-42px);
   }
   to {
     opacity: 1;
@@ -153,11 +153,11 @@
   }
 
   .home-intro-title {
-    animation-delay: 0.4s;
+    animation-delay: 0.9s;
   }
 
   .home-intro-copy {
-    animation-delay: 0.68s;
+    animation-delay: 1.2s;
   }
 }
 

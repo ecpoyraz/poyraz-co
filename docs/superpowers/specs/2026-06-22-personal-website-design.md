@@ -1,7 +1,7 @@
 # poyraz.co Rebuild — Design Spec
 
 Date: 2026-06-22
-Owner: Eyüp Can Poyraz
+Owner: Eyüp Poyraz
 Status: Approved (design), pending implementation plan
 
 ## 1. Summary

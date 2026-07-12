@@ -23,8 +23,9 @@ const PROJECT_DESCRIPTIONS: Record<string, string> = {
 };
 
 export const metadata: Metadata = {
+  title: { absolute: "A full stack marketer | Eyüp Poyraz" },
   description:
-    "Explore my work as a marketer with a track record of scaling tech products to maximize user value.",
+    "Hi, it's Eyüp. I blend product marketing, growth, content, analytics, and a little code to help tech products find traction and scale.",
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };
@@ -46,7 +47,7 @@ export default function Home() {
       {
         "@type": "Person",
         "@id": "https://poyraz.co/#person",
-        name: "Eyüp Can Poyraz",
+        name: "Eyüp Poyraz",
         url: "https://poyraz.co",
         jobTitle: "Product and Growth Marketer",
         sameAs: [
@@ -58,7 +59,7 @@ export default function Home() {
         "@type": "WebSite",
         "@id": "https://poyraz.co/#website",
         url: "https://poyraz.co",
-        name: "Eyüp Can Poyraz",
+        name: "Eyüp Poyraz",
         publisher: { "@id": "https://poyraz.co/#person" },
       },
     ],

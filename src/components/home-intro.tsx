@@ -10,8 +10,8 @@ export function HomeIntro() {
 
         <p className="home-intro-copy mt-10 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl md:mt-12 md:text-2xl">
           Hi, it&apos;s Eyüp. I blend product marketing, growth, content,
-          analytics, and a little code to help tech products find traction
-          and scale.
+          analytics, and a little code to help tech products find traction and
+          scale.
         </p>
       </div>
 
@@ -20,10 +20,8 @@ export function HomeIntro() {
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-muted sm:bottom-10"
       >
         <span className="label-mono whitespace-nowrap">Scroll to continue</span>
-        <span className="flex size-8 items-center justify-center rounded-full border border-border bg-background/80">
-          <span className="scroll-cue-bob inline-flex">
-            <ArrowDown className="size-4" strokeWidth={1.5} />
-          </span>
+        <span className="scroll-cue-bob flex size-8 items-center justify-center rounded-full border border-border bg-background/80">
+          <ArrowDown className="size-4" strokeWidth={1.5} />
         </span>
       </div>
     </section>
