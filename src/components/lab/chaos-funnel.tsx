@@ -568,7 +568,7 @@ export function ChaosFunnel() {
   );
 
   return (
-    <div ref={root} className="-mt-[100svh]">
+    <div ref={root} className="-mt-[100svh] mb-[70svh] sm:mb-0">
       {/* the scene breaks out to full width so the black panel of act I can
           run full-bleed over the beige page — the same surface the revenue
           panel handed off in red, now black; act II plays on the beige
