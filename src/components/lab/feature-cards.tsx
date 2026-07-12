@@ -70,7 +70,7 @@ export function FeatureCards() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=6300",
+          end: "+=4500",
           scrub: 1,
           fastScrollEnd: true,
           pin: true,

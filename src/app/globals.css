@@ -118,20 +118,6 @@
   animation: hero-drift 9s ease-in-out infinite alternate;
 }
 
-/* Idle pulse for the hero headline before the user starts scrolling. */
-@keyframes blink-soft {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-.blink-soft {
-  animation: blink-soft 1.6s ease-in-out infinite;
-}
-
 @keyframes scroll-cue-bob {
   0%,
   100% {

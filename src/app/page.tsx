@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { NewsletterSignup } from "@/components/newsletter-signup";
 import { getPublishedPosts } from "@/lib/posts";
 import { projects } from "#content";
 import { published } from "@/lib/collections";
@@ -11,6 +10,7 @@ import { SectionHeader } from "@/components/section-header";
 import { AnimationLab } from "@/components/lab/animation-lab";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AnimatedCta } from "@/components/animated-cta";
+import { HomeIntro } from "@/components/home-intro";
 
 const PROJECT_DESCRIPTIONS: Record<string, string> = {
   "clover-finance-crypto-wallet": "A non-custodial crypto wallet and DeFi platform.",
@@ -71,8 +71,13 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* The story — pinned, scroll-driven sections */}
-      <AnimationLab />
+      <div>
+        {/* Intro — static first viewport */}
+        <HomeIntro />
+
+        {/* The story — pinned, scroll-driven sections; starts at section two */}
+        <AnimationLab />
+      </div>
 
       {/* CTA — normal flow, revealed like the projects section */}
       <ScrollReveal>
@@ -108,7 +113,7 @@ export default function Home() {
         </div>
       </ScrollReveal>
 
-      {/* Notebook — index list + newsletter */}
+      {/* Notebook — index list */}
       <ScrollReveal>
         <SectionHeader title="Notebook" className="mb-8" />
         <IndexList>
@@ -125,11 +130,6 @@ export default function Home() {
           ))}
           <IndexRow href="/notebook" title="Read all →" />
         </IndexList>
-        <div className="mt-10 rounded-2xl border border-border bg-card p-8 md:p-10">
-          <div className="mx-auto max-w-2xl">
-            <NewsletterSignup />
-          </div>
-        </div>
       </ScrollReveal>
     </div>
   );
