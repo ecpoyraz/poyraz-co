@@ -310,7 +310,7 @@ export function RevenueArc() {
         >
           <div className="ra-intro-title">
             <div ref={title0WrapRef} className="overflow-hidden">
-              <h2 className="ra-title-0 font-display text-5xl font-normal leading-[1.02] tracking-[-0.03em] text-foreground sm:text-6xl">
+              <h2 className="ra-title-0 font-display text-4xl font-normal leading-[1.02] tracking-[-0.03em] text-foreground sm:text-6xl">
                 But it didn&apos;t work as you expected.
               </h2>
             </div>
