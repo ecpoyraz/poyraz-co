@@ -81,7 +81,7 @@ export default function AboutPage() {
       <Reveal as="header" className="pt-6 md:pt-14">
         <p className="label-mono mb-4 text-muted">About me</p>
         <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
-          Engineer and product marketer blending product, marketing and data.
+          Hi 👋 It&apos;s Eyüp
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-muted md:text-lg">
           From Aegean&apos;s heart. With over a half decade in the field, I
