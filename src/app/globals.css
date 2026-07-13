@@ -134,33 +134,6 @@
   }
 }
 
-@keyframes home-intro-rise {
-  from {
-    opacity: 0;
-    transform: translateY(-42px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
-  .home-intro-title,
-  .home-intro-copy {
-    opacity: 0;
-    animation: home-intro-rise 0.9s cubic-bezier(0.21, 0.61, 0.35, 1) forwards;
-  }
-
-  .home-intro-title {
-    animation-delay: 0.9s;
-  }
-
-  .home-intro-copy {
-    animation-delay: 1.2s;
-  }
-}
-
 @keyframes fade-up {
   from {
     opacity: 0;

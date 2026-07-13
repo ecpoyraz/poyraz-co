@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const TOTAL = 10; // arbitrary line-draw duration, everything below is a fraction of it
-const LINE_START = 3.45; // the line only starts once the chart has unfurled
+const LINE_START = 3.85; // the line only starts once the chart has unfurled
 
 // GSAP rounds stroke-dashoffset to whole px, so the draw range has to be
 // large — with pathLength 1 the line snaps from hidden to fully drawn
@@ -99,9 +99,8 @@ export function RevenueArc() {
       gsap.set(".ra-marker", { scale: 0, transformOrigin: "50% 50%" });
       gsap.set(".ra-intro-title", { autoAlpha: 0, y: reduced ? 0 : 26 });
 
-      const sharedBackground = root.current?.closest<HTMLElement>(
-        ".story-three-four",
-      );
+      const sharedBackground =
+        root.current?.closest<HTMLElement>(".story-three-four");
       if (!sharedBackground) return;
       gsap.set(sharedBackground, { backgroundColor: "#801919" });
 
@@ -110,8 +109,8 @@ export function RevenueArc() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=8800",
-          scrub: 1,
+          end: "+=5200",
+          scrub: 1.5,
           fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
@@ -140,7 +139,7 @@ export function RevenueArc() {
         { height: 0 },
         {
           height: () => chartWrapRef.current?.scrollHeight ?? 0,
-          duration: 1.1,
+          duration: 1.6,
           ease: "power2.inOut",
           immediateRender: false,
         },
@@ -178,18 +177,32 @@ export function RevenueArc() {
       const turnAt = LINE_START + TOTAL * 0.44;
       tl.to(
         ".ra-title-0",
-        { autoAlpha: 0, y: -dy, duration: 0.45, ease: "sine.inOut" },
+        { autoAlpha: 0, y: -dy, duration: 0.5, ease: "sine.inOut" },
         turnAt,
-      ).fromTo(
+      );
+
+      // The chart's ride-up is one continuous move, not three: every layout
+      // change that shifts it — the title collapsing above, the whole block
+      // translating up, and the second line unfurling below — runs on the
+      // SAME start, duration and ease. Sequencing them (as before) let each
+      // motion stop and the next start, and under scrub that stop/start read
+      // as the chart nudging up then down. Starting the collapse only after
+      // the title has fully faded also keeps its text from squishing while
+      // still visible. riseAt/riseDur keep the three tweens locked together.
+      const riseAt = turnAt + 0.5;
+      const riseDur = 0.9;
+      const riseEase = "power2.inOut";
+
+      tl.fromTo(
         title0WrapRef.current,
         { height: () => title0WrapRef.current?.scrollHeight ?? 0 },
         {
           height: 0,
-          duration: 0.5,
-          ease: "power2.inOut",
+          duration: riseDur,
+          ease: riseEase,
           immediateRender: false,
         },
-        turnAt + 0.35,
+        riseAt,
       );
 
       // the collapse alone only frees the title's height, which vertical
@@ -201,30 +214,30 @@ export function RevenueArc() {
         { y: 0 },
         {
           y: () => (window.innerWidth >= 640 ? -window.innerHeight * 0.1 : 0),
-          duration: 0.5,
-          ease: "power2.inOut",
+          duration: riseDur,
+          ease: riseEase,
           immediateRender: false,
         },
-        turnAt + 0.35,
+        riseAt,
       );
 
-      // Once the chart has fully finished moving upward, the second line
-      // unfurls underneath it. Keeping these motions sequential prevents
-      // the copy from colliding with the chart during the turn.
+      // the second line unfurls underneath the chart in the same breath —
+      // its copy stays invisible until later, so only the empty space opens
+      // here and the net height change stays smooth instead of bumping twice
       tl.fromTo(
         bottomWrapRef.current,
         { height: 0 },
         {
           height: () => bottomWrapRef.current?.scrollHeight ?? 0,
-          duration: 0.5,
-          ease: "power2.inOut",
+          duration: riseDur,
+          ease: riseEase,
           immediateRender: false,
         },
-        turnAt + 0.95,
+        riseAt,
       ).to(
         ".ra-title-1",
         { autoAlpha: 1, y: 0, duration: 0.45, ease: "sine.out" },
-        turnAt + 1.5,
+        riseAt + riseDur + 0.2,
       );
 
       // act II markers, as the line climbs through each driver — the dot,

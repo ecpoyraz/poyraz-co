@@ -11,9 +11,13 @@ export function AnimationLab() {
     // pinSpacing to false, which removes the scroll room for pinned sections
     <div>
       <HeroMrr key="hero" />
+      {/* breathing room so the finished scene clears before the next pins */}
+      <div aria-hidden className="h-[20vh]" />
       <FeatureCards key="features" />
+      <div aria-hidden className="h-[40vh]" />
       <div className="story-three-four relative ml-[calc(50%-50vw)] w-screen bg-[#801919]">
         <RevenueArc key="revenue" />
+        <div aria-hidden className="h-[40vh]" />
         <ChaosFunnel key="chaos-funnel" />
       </div>
     </div>

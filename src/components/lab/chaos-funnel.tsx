@@ -311,9 +311,8 @@ export function ChaosFunnel() {
         "(prefers-reduced-motion: reduce)",
       ).matches;
       const dy = reduced ? 0 : 10;
-      const sharedBackground = root.current?.closest<HTMLElement>(
-        ".story-three-four",
-      );
+      const sharedBackground =
+        root.current?.closest<HTMLElement>(".story-three-four");
       if (!sharedBackground) return;
 
       gsap.set(".cf-act1 span", { autoAlpha: 0, y: dy });
@@ -356,8 +355,8 @@ export function ChaosFunnel() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=8000",
-          scrub: 1,
+          end: "+=4800",
+          scrub: 1.5,
           fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
@@ -491,8 +490,8 @@ export function ChaosFunnel() {
             color,
             borderColor: "rgba(163, 152, 131, 0.34)",
             boxShadow: "0 18px 45px rgba(64, 46, 28, 0.10)",
-            duration: reduced ? 0.55 : 1.05,
-            ease: reduced ? "sine.inOut" : "power3.inOut",
+            duration: reduced ? 0.55 : 1.5,
+            ease: reduced ? "sine.inOut" : "power2.inOut",
           },
           at,
         )
@@ -504,12 +503,12 @@ export function ChaosFunnel() {
               duration: 0.22,
               ease: "back.out(1.8)",
             },
-            at + (reduced ? 0.5 : 0.98),
+            at + (reduced ? 0.5 : 1.43),
           )
           .to(
             `.cf-ghost-${chipIdx}`,
             { autoAlpha: 1, color, duration: 0.12, ease: "none" },
-            at + (reduced ? 0.62 : 1.12),
+            at + (reduced ? 0.62 : 1.57),
           )
           .to(
             `.cf-fly-${chipIdx}`,
@@ -521,7 +520,7 @@ export function ChaosFunnel() {
       // Each pipe begins flowing only after its destination has clicked into
       // place. This makes the direction of the system legible at a glance.
       CONNECTORS.forEach((c, i) => {
-        const at = flowAt(c.targetIdx) + (reduced ? 0.7 : 1.2);
+        const at = flowAt(c.targetIdx) + (reduced ? 0.7 : 1.65);
         tl.to(
           `.cf-connector-${i}`,
           { autoAlpha: 1, duration: 0.45, ease: "sine.inOut" },
@@ -532,7 +531,7 @@ export function ChaosFunnel() {
       // the last pipe rides down from the diagram into the word it all
       // leads to — the payoff line is already fading in underneath it so
       // the dashes land on "revenue" itself
-      const endAt = flowAt(FLOW_ORDER.length - 1) + 1.5;
+      const endAt = flowAt(FLOW_ORDER.length - 1) + 1.95;
       tl.to(
         ".cf-punch-2",
         { autoAlpha: 1, y: 0, duration: 0.7, ease: "sine.inOut" },

@@ -13,13 +13,18 @@ import { AnimatedCta } from "@/components/animated-cta";
 import { HomeIntro } from "@/components/home-intro";
 
 const PROJECT_DESCRIPTIONS: Record<string, string> = {
-  "clover-finance-crypto-wallet": "A non-custodial crypto wallet and DeFi platform.",
+  "clover-finance-crypto-wallet":
+    "A non-custodial crypto wallet and DeFi platform.",
   "contentrain-headless-cms": "A Git-based headless CMS for developer teams.",
   "masa-social-event-app": "A social app for discovering nearby events.",
-  "numerspace-calculator-platform": "A bilingual platform for financial and everyday calculators.",
-  "param-fintech-mobile-app": "An embedded finance and digital banking platform.",
-  "peerbie-ai-productivity-tool": "An AI-powered team productivity and collaboration app.",
-  "werk-team-productivity-platform": "An all-in-one team productivity and communication platform.",
+  "numerspace-calculator-platform":
+    "A bilingual platform for financial and everyday calculators.",
+  "param-fintech-mobile-app":
+    "An embedded finance and digital banking platform.",
+  "peerbie-ai-productivity-tool":
+    "An AI-powered team productivity and collaboration app.",
+  "werk-team-productivity-platform":
+    "An all-in-one team productivity and communication platform.",
 };
 
 export const metadata: Metadata = {
@@ -66,7 +71,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex w-full flex-col gap-20 md:mx-[calc(50%-min(39vw,50rem))] md:w-[min(78vw,100rem)] md:gap-28">
+    <div className="flex w-full flex-col gap-14 md:mx-[calc(50%-min(39vw,50rem))] md:w-[min(78vw,100rem)] md:gap-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

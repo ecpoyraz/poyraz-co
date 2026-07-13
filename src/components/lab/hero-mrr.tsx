@@ -44,8 +44,8 @@ export function HeroMrr() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=2000",
-          scrub: 1,
+          end: "+=1450",
+          scrub: 1.5,
           fastScrollEnd: true,
           pin: true,
           anticipatePin: 1,
@@ -95,7 +95,7 @@ export function HeroMrr() {
       tl.to(
         ".hm-scene",
         { autoAlpha: 0, duration: 0.8, ease: "sine.inOut" },
-        10.1,
+        12.5,
       ).to({}, { duration: 0.3 });
     },
     { scope: root },
