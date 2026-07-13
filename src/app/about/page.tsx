@@ -79,7 +79,7 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col gap-16 md:gap-20">
       <Reveal as="header" className="pt-6 md:pt-14">
-        <p className="label-mono mb-4 text-muted">About</p>
+        <p className="label-mono mb-4 text-muted">About me</p>
         <h1 className="max-w-4xl font-display text-4xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
           Engineer and product marketer blending product, marketing and data.
         </h1>
@@ -138,10 +138,7 @@ export default function AboutPage() {
         <p className="label-mono mb-8 text-muted">Podcasts</p>
         <div className="grid gap-4 sm:grid-cols-2">
           {podcasts.map((podcast) => (
-            <div
-              key={podcast.episodeId}
-              className="overflow-hidden rounded-xl"
-            >
+            <div key={podcast.episodeId} className="overflow-hidden rounded-xl">
               <iframe
                 src={`https://open.spotify.com/embed/episode/${podcast.episodeId}?utm_source=generator`}
                 title={podcast.title}
